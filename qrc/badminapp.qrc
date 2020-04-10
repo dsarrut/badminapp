@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>128x128/actions/application-exit-4.png</file>
+        <file>128x128/actions/application-exit-5.png</file>
+        <file>128x128/actions/dialog-ok-2.png</file>
+        <file>128x128/emotes/face-angry.png</file>
+        <file>128x128/emotes/face-crying.png</file>
+        <file>128x128/emotes/face-crying-2.png</file>
+        <file>128x128/emotes/face-raspberry.png</file>
+        <file>128x128/emotes/face-raspberry-3.png</file>
+        <file>128x128/emotes/face-smirk.png</file>
+        <file>128x128/emotes/face-wink-4.png</file>
+        <file>128x128/status/dialog-error-7.png</file>
+        <file>badminton.png</file>
+        <file>olympic-40778_1280.png</file>
+        <file>128x128/actions/edit-clear-history-3.png</file>
+        <file>hamac.png</file>
+    </qresource>
+    <qresource prefix="/css"/>
+</RCC>
