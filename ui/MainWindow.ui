@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1319</width>
+    <height>842</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Badmin-App</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tab">
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab_player">
+       <attribute name="title">
+        <string>Joueurs</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_round1">
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>Tour n°1</string>
+       </attribute>
+       <layout class="QGridLayout" name="layout"/>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1319</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menucoucou">
+    <property name="title">
+     <string>coucou</string>
+    </property>
+    <addaction name="actionyop"/>
+    <addaction name="action_exit"/>
+   </widget>
+   <widget class="QMenu" name="menutoto">
+    <property name="title">
+     <string>toto</string>
+    </property>
+    <addaction name="action_random_score"/>
+   </widget>
+   <addaction name="menucoucou"/>
+   <addaction name="menutoto"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_random_score">
+   <property name="text">
+    <string>random score</string>
+   </property>
+  </action>
+  <action name="actionyop">
+   <property name="text">
+    <string>yop</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
