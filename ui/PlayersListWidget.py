@@ -1,10 +1,9 @@
 
-from PySide2 import QtWidgets, QtGui
-from PySide2.QtCore import Slot, Signal, QSize, Qt, QModelIndex
-from PySide2.QtGui import QPixmap, QPalette, QColor, QFont, QBrush
-from PySide2.QtWidgets import QAction, QAbstractItemView, QTableWidgetSelectionRange
+from PySide2 import QtWidgets
+from PySide2.QtCore import Slot, Qt, QModelIndex
+from PySide2.QtGui import QColor, QBrush
 from .ui_PlayersListWidget import Ui_PlayersListWidget
-
+from core import Player
 
 class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
 
@@ -21,6 +20,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         tw.itemChanged.connect(self.slot_on_item_changed)
         tw.itemSelectionChanged.connect(self.slot_on_cell_activated)
         self.button_del.clicked.connect(self.slot_on_player_del)
+        self.button_add.clicked.connect(self.slot_on_player_add)
 
 
     def set_players(self, players):
@@ -40,7 +40,9 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
 
     def add_player(self, row, player):
         tw = self.table_widget
-        tw.setItem(row, 0, QtWidgets.QTableWidgetItem(player.get_name(0)))
+        itemn = QtWidgets.QTableWidgetItem(player.get_name(0))
+        tw.setItem(row, 0, itemn)
+        row = itemn.row()
         tw.setItem(row, 1, QtWidgets.QTableWidgetItem(player.get_name(1)))
 
         # set other columns not editable but with color black
@@ -56,6 +58,8 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         item = QtWidgets.QTableWidgetItem(str(player.id))
         tw.setItem(row, n-1, item)
         #tw.setColumnHidden(n-1, True) #FIXME
+
+        return itemn
 
 
     @Slot()
@@ -100,5 +104,22 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         tw.rowsAboutToBeRemoved(QModelIndex(), row, row)
         tw.removeRow(row)
         tw.blockSignals(False)
-        tw.clearSelection()
-        #self.slot_on_cell_activated() # no because not seen selected
+        self.slot_on_cell_activated()
+        tw.setFocus()
+
+    def slot_on_player_add(self):
+        tw = self.table_widget
+        items = tw.selectedItems()
+        if len(items) > 0:
+            row = items[0].row()
+        else:
+            row = 0
+        p = Player('nom', 'prénom')
+        self.players.append(p)
+        tw.blockSignals(True)
+        tw.insertRow(row)
+        item = self.add_player(row, p)
+        tw.blockSignals(False)
+        tw.setCurrentItem(item)
+        tw.selectRow(item.row())
+        tw.setFocus()
