@@ -47,6 +47,18 @@
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
          <widget class="QLabel" name="label_field">
+          <property name="minimumSize">
+           <size>
+            <width>75</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>75</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>29</pointsize>
@@ -59,6 +71,9 @@
           </property>
           <property name="text">
            <string>3</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
@@ -391,6 +406,12 @@
          <property name="enabled">
           <bool>true</bool>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>32</width>
@@ -412,6 +433,12 @@
         <widget class="QLabel" name="status2">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>

@@ -15,6 +15,15 @@
         <file>olympic-40778_1280.png</file>
         <file>128x128/actions/edit-clear-history-3.png</file>
         <file>hamac.png</file>
+        <file>128x128/actions/dialog-cancel-7.png</file>
+        <file>128x128/actions/document-new-8.png</file>
+        <file>128x128/actions/edit-add.png</file>
+        <file>128x128/actions/edit-add-2.png</file>
+        <file>128x128/actions/edit-add-4.png</file>
+        <file>128x128/actions/edit-delete-6.png</file>
+        <file>128x128/actions/edit-delete-shred.png</file>
+        <file>128x128/actions/edit-delete-2.png</file>
+        <file>128x128/actions/edit-clear-locationbar-rtl.png</file>
     </qresource>
     <qresource prefix="/css"/>
 </RCC>

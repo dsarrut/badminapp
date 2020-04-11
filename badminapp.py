@@ -9,7 +9,7 @@ from core.Round import Round
 from core.Tournament import Tournament
 
 t = Tournament()
-n = 31
+n = 51
 players = []
 for i in range(n):
     players.append(Player())

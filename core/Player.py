@@ -13,6 +13,8 @@ def random_word():
 
 class Player:
 
+    _last_id = 0
+
     def __init__(self, first=None, last=None):
         if not first:
             first = random_word()
@@ -20,6 +22,8 @@ class Player:
             last = random_word()
         self.first_name = first.capitalize()
         self.last_name = last.capitalize()
+        self.id = Player._last_id+1
+        Player._last_id = self.id
 
     def __str__(self):
         s = f'{self.first_name} {self.last_name}'

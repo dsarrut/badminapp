@@ -17,12 +17,30 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>clear </string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>:/icons/128x128/actions/edit-clear-locationbar-rtl.png</normalon>
+        </iconset>
        </property>
       </widget>
      </item>
@@ -40,9 +58,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_status">
+      <widget class="QPushButton" name="button_add">
        <property name="text">
-        <string>Il y actuellement 0 joueur</string>
+        <string>Ajouter un joueur</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>:/icons/128x128/actions/document-new-8.png</normalon>
+        </iconset>
        </property>
       </widget>
      </item>
@@ -58,6 +81,51 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_del">
+       <property name="text">
+        <string>Supprimer</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>:/icons/128x128/actions/edit-delete-shred.png</normalon>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_status">
+       <property name="text">
+        <string>Il y actuellement 0 joueur</string>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer">
@@ -81,6 +149,9 @@
      </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectItems</enum>
      </property>
      <property name="sortingEnabled">
       <bool>true</bool>
@@ -141,6 +212,11 @@
      <column>
       <property name="text">
        <string>Points</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>player index</string>
       </property>
      </column>
     </widget>

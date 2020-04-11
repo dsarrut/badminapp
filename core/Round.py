@@ -56,7 +56,6 @@ class Round:
         while i<n:
             self.waiting_players.append(pl[i])
             i = i+1
-        print('waiting ', len(self.waiting_players))
 
     def random_scores(self):
         for m in self.matches:
@@ -75,6 +74,7 @@ class Round:
 
     def update_fields(self):
         free_fields = []
+        print('FIXME bug here in update_fields')
         for m in self.matches:
             if m.status == 1 or m.status == 2:
                 free_fields.append(m.field)

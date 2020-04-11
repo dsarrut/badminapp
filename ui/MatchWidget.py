@@ -124,14 +124,14 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
         '''
         status = self.match.status
         self.match_status_has_changed.emit()
+        s = 25
         if not self.match.is_valid():
-            self.status1.setMaximumSize(QSize(32, 32))
+            self.status1.setMaximumSize(QSize(s, s))
             self.status1.setPixmap(QPixmap(u":/icons/128x128/status/dialog-error-7.png"))
             self.status1.setVisible(True)
             self.status2.setVisible(False)
             return
         if status != 0:
-            s = 22
             self.status1.setMaximumSize(QSize(s, s))
             self.status2.setMaximumSize(QSize(s, s))
             if status == 1:
@@ -145,7 +145,7 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
             # update Field
             self.label_field.setEnabled(False)
         else:
-            self.status1.setMaximumSize(QSize(32, 32))
+            self.status1.setMaximumSize(QSize(s, s))
             self.status1.setPixmap(QPixmap(u":/icons/olympic-40778_1280.png"))
             self.status1.setVisible(True)
             self.status2.setVisible(False)
@@ -234,7 +234,7 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
         else:
             font.setPointSize(10)
             self.label_field.setFont(font)
-            self.label_field.setText("Attente \nd'un terrain ...")
+            self.label_field.setText("Attente \nterrain")
             self.label_field.setEnabled(False)
 
     def update_context_menu(self):
