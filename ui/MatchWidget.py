@@ -52,7 +52,7 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
 
     def get_spin_box(self,team, set):
         '''
-        return the spin box accordinf to the team number and set number
+        return the spin box according to the team number and set number
         '''
         if team == 1:
             if set == 1:

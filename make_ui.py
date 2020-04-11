@@ -24,6 +24,7 @@ gen_ui(w, 'MainWindow')
 gen_ui(w, 'MatchWidget')
 gen_ui(w, 'RoundWidget')
 gen_ui(w, 'WaitingPlayersWidget')
+gen_ui(w, 'PlayersListWidget')
 
 print('Generate RC')
 if w:

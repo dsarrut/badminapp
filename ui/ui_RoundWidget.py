@@ -109,64 +109,67 @@ class Ui_RoundWidget(object):
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.page_2.setGeometry(QRect(0, 0, 1262, 659))
-        self.layoutWidget = QWidget(self.page_2)
-        self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(400, 110, 341, 38))
-        self.horizontalLayout_3 = QHBoxLayout(self.layoutWidget)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.layoutWidget)
-        self.label_3.setObjectName(u"label_3")
+        self.widget = QWidget(self.page_2)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(120, 60, 343, 128))
+        self.verticalLayout_2 = QVBoxLayout(self.widget)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.label_2 = QLabel(self.widget)
+        self.label_2.setObjectName(u"label_2")
         font1 = QFont()
         font1.setPointSize(19)
+        self.label_2.setFont(font1)
+
+        self.horizontalLayout_2.addWidget(self.label_2)
+
+        self.spin_fields = QSpinBox(self.widget)
+        self.spin_fields.setObjectName(u"spin_fields")
+        self.spin_fields.setFont(font1)
+        self.spin_fields.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_2.addWidget(self.spin_fields)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.label_3 = QLabel(self.widget)
+        self.label_3.setObjectName(u"label_3")
         self.label_3.setFont(font1)
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
-        self.spin_win_point_value = QSpinBox(self.layoutWidget)
+        self.spin_win_point_value = QSpinBox(self.widget)
         self.spin_win_point_value.setObjectName(u"spin_win_point_value")
         self.spin_win_point_value.setFont(font1)
         self.spin_win_point_value.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.spin_win_point_value)
 
-        self.layoutWidget_4 = QWidget(self.page_2)
-        self.layoutWidget_4.setObjectName(u"layoutWidget_4")
-        self.layoutWidget_4.setGeometry(QRect(350, 190, 341, 38))
-        self.horizontalLayout_7 = QHBoxLayout(self.layoutWidget_4)
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
+
+        self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.label_7 = QLabel(self.layoutWidget_4)
+        self.label_7 = QLabel(self.widget)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font1)
 
         self.horizontalLayout_7.addWidget(self.label_7)
 
-        self.spin_max_point_value = QSpinBox(self.layoutWidget_4)
+        self.spin_max_point_value = QSpinBox(self.widget)
         self.spin_max_point_value.setObjectName(u"spin_max_point_value")
         self.spin_max_point_value.setFont(font1)
         self.spin_max_point_value.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_7.addWidget(self.spin_max_point_value)
 
-        self.layoutWidget1 = QWidget(self.page_2)
-        self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(120, 60, 299, 38))
-        self.horizontalLayout_2 = QHBoxLayout(self.layoutWidget1)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.label_2 = QLabel(self.layoutWidget1)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setFont(font1)
 
-        self.horizontalLayout_2.addWidget(self.label_2)
-
-        self.spin_fields = QSpinBox(self.layoutWidget1)
-        self.spin_fields.setObjectName(u"spin_fields")
-        self.spin_fields.setFont(font1)
-        self.spin_fields.setAlignment(Qt.AlignCenter)
-
-        self.horizontalLayout_2.addWidget(self.spin_fields)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_7)
 
         self.toolBox.addItem(self.page_2, u"Options")
 
@@ -175,7 +178,7 @@ class Ui_RoundWidget(object):
 
         self.retranslateUi(RoundWidget)
 
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(1)
         self.toolBox.layout().setSpacing(0)
 
 
@@ -192,9 +195,9 @@ class Ui_RoundWidget(object):
         self.button_next_round.setText(QCoreApplication.translate("RoundWidget", u"Prochain tour", None))
         self.label.setText(QCoreApplication.translate("RoundWidget", u"TextLabel", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("RoundWidget", u"Tour n\u00b03", None))
+        self.label_2.setText(QCoreApplication.translate("RoundWidget", u"Nombre de terrains :", None))
         self.label_3.setText(QCoreApplication.translate("RoundWidget", u"Score \u00e0 atteindre par set", None))
         self.label_7.setText(QCoreApplication.translate("RoundWidget", u"Score maximum", None))
-        self.label_2.setText(QCoreApplication.translate("RoundWidget", u"Nombre de terrains :", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("RoundWidget", u"Options", None))
     # retranslateUi
 

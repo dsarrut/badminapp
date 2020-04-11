@@ -21,12 +21,21 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_player">
        <attribute name="title">
         <string>Joueurs</string>
        </attribute>
+       <layout class="QGridLayout" name="layout_2">
+        <item row="0" column="0">
+         <widget class="QWidget" name="widget" native="true">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_round1">
        <property name="autoFillBackground">

@@ -4,6 +4,7 @@ from .ui_MainWindow import Ui_MainWindow
 from PySide2.QtCore import Slot, QCoreApplication
 from PySide2.QtWidgets import QApplication, QGridLayout, QWidget
 from ui import RoundWidget
+from ui import PlayersListWidget
 from core import Tournament
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -14,6 +15,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.tournament = Tournament()
         self.action_exit.triggered.connect(self.exit_app)
+
+        # install the player list widget
+        pl = self.tournament.players
+        self.players_list_widget = PlayersListWidget.PlayersListWidget(self, pl)
+        self.tab_player.layout().addWidget(self.players_list_widget)
+        self.tab_player.setAutoFillBackground(True)
 
     def set_tournament(self, tournament):
         # FIXME: check if already exist ?

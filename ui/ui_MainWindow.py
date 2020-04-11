@@ -36,6 +36,14 @@ class Ui_MainWindow(object):
         self.tab.setAutoFillBackground(True)
         self.tab_player = QWidget()
         self.tab_player.setObjectName(u"tab_player")
+        self.layout_2 = QGridLayout(self.tab_player)
+        self.layout_2.setObjectName(u"layout_2")
+        self.widget = QWidget(self.tab_player)
+        self.widget.setObjectName(u"widget")
+        self.widget.setAutoFillBackground(True)
+
+        self.layout_2.addWidget(self.widget, 0, 0, 1, 1)
+
         self.tab.addTab(self.tab_player, "")
         self.tab_round1 = QWidget()
         self.tab_round1.setObjectName(u"tab_round1")
@@ -67,7 +75,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tab.setCurrentIndex(1)
+        self.tab.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
