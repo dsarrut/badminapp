@@ -111,7 +111,7 @@ class Ui_RoundWidget(object):
         self.page_2.setGeometry(QRect(0, 0, 1262, 659))
         self.widget = QWidget(self.page_2)
         self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(120, 60, 343, 128))
+        self.widget.setGeometry(QRect(120, 60, 381, 128))
         self.verticalLayout_2 = QVBoxLayout(self.widget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -127,6 +127,8 @@ class Ui_RoundWidget(object):
 
         self.spin_fields = QSpinBox(self.widget)
         self.spin_fields.setObjectName(u"spin_fields")
+        self.spin_fields.setMinimumSize(QSize(80, 0))
+        self.spin_fields.setMaximumSize(QSize(80, 16777215))
         self.spin_fields.setFont(font1)
         self.spin_fields.setAlignment(Qt.AlignCenter)
 
@@ -145,6 +147,8 @@ class Ui_RoundWidget(object):
 
         self.spin_win_point_value = QSpinBox(self.widget)
         self.spin_win_point_value.setObjectName(u"spin_win_point_value")
+        self.spin_win_point_value.setMinimumSize(QSize(80, 0))
+        self.spin_win_point_value.setMaximumSize(QSize(80, 16777215))
         self.spin_win_point_value.setFont(font1)
         self.spin_win_point_value.setAlignment(Qt.AlignCenter)
 
@@ -163,6 +167,8 @@ class Ui_RoundWidget(object):
 
         self.spin_max_point_value = QSpinBox(self.widget)
         self.spin_max_point_value.setObjectName(u"spin_max_point_value")
+        self.spin_max_point_value.setMinimumSize(QSize(80, 0))
+        self.spin_max_point_value.setMaximumSize(QSize(80, 16777215))
         self.spin_max_point_value.setFont(font1)
         self.spin_max_point_value.setAlignment(Qt.AlignCenter)
 
@@ -196,8 +202,8 @@ class Ui_RoundWidget(object):
         self.label.setText(QCoreApplication.translate("RoundWidget", u"TextLabel", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("RoundWidget", u"Tour n\u00b03", None))
         self.label_2.setText(QCoreApplication.translate("RoundWidget", u"Nombre de terrains :", None))
-        self.label_3.setText(QCoreApplication.translate("RoundWidget", u"Score \u00e0 atteindre par set", None))
-        self.label_7.setText(QCoreApplication.translate("RoundWidget", u"Score maximum", None))
+        self.label_3.setText(QCoreApplication.translate("RoundWidget", u"Score \u00e0 atteindre par set :", None))
+        self.label_7.setText(QCoreApplication.translate("RoundWidget", u"Score maximum :", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("RoundWidget", u"Options", None))
     # retranslateUi
 

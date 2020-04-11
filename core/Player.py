@@ -25,3 +25,15 @@ class Player:
         s = f'{self.first_name} {self.last_name}'
         return s
 
+    def set_name(self,i,value):
+        if i == 0:
+            self.first_name = value
+        if i == 1:
+            self.last_name = value
+
+    def get_name(self, i):
+        if i == 0:
+            return self.first_name
+        if i == 1:
+            return self.last_name
+

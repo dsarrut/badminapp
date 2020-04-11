@@ -18,6 +18,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # install the player list widget
         pl = self.tournament.players
+        print('pl', pl)
         self.players_list_widget = PlayersListWidget.PlayersListWidget(self, pl)
         self.tab_player.layout().addWidget(self.players_list_widget)
         self.tab_player.setAutoFillBackground(True)
@@ -25,6 +26,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def set_tournament(self, tournament):
         # FIXME: check if already exist ?
         self.tournament = tournament
+        self.players_list_widget.set_players(tournament.players)
 
     def set_round(self, round):
         #self.rounds.append(round)

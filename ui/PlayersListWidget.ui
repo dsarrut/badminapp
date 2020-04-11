@@ -40,6 +40,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QLabel" name="label_status">
+       <property name="text">
+        <string>Il y actuellement 0 joueur</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -68,13 +75,19 @@
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
+    <widget class="QTableWidget" name="table_widget">
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
      <row>
       <property name="text">
        <string>1</string>

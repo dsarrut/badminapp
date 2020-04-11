@@ -13,7 +13,7 @@ n = 31
 players = []
 for i in range(n):
     players.append(Player())
-t.set_players_list(players)
+t.set_players(players)
 
 round = t.new_round()
 round.fields_number = 5

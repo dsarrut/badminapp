@@ -10,7 +10,7 @@ class Tournament:
         s = f'Tournament players: {len(self.players)}, rounds: {len(self.rounds)}'
         return s
 
-    def set_players_list(self, players):
+    def set_players(self, players):
         self.players = players
 
     def new_round(self):
