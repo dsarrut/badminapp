@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="edit_filter">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -143,83 +143,7 @@
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="QTableWidget" name="table_widget">
-     <property name="alternatingRowColors">
-      <bool>true</bool>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectItems</enum>
-     </property>
-     <property name="sortingEnabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <row>
-      <property name="text">
-       <string>1</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>2</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>3</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>4</string>
-      </property>
-     </row>
-     <column>
-      <property name="text">
-       <string>Nom</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Prénom</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Classement</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Matchs joués</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Matchs gagnés</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Set perdus</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Points</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>player index</string>
-      </property>
-     </column>
-    </widget>
+    <widget class="QTableView" name="table_widget"/>
    </item>
   </layout>
  </widget>
