@@ -15,16 +15,24 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QRadialGradient)
 from PySide2.QtWidgets import *
 
+import badminapp_rc
 
 class Ui_PlayersListWidget(object):
     def setupUi(self, PlayersListWidget):
         if PlayersListWidget.objectName():
             PlayersListWidget.setObjectName(u"PlayersListWidget")
-        PlayersListWidget.resize(1066, 688)
+        PlayersListWidget.resize(1066, 449)
         self.gridLayout = QGridLayout(PlayersListWidget)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.label = QLabel(PlayersListWidget)
+        self.label.setObjectName(u"label")
+
+        self.horizontalLayout.addWidget(self.label)
+
         self.edit_filter = QLineEdit(PlayersListWidget)
         self.edit_filter.setObjectName(u"edit_filter")
         self.edit_filter.setMinimumSize(QSize(200, 0))
@@ -32,13 +40,14 @@ class Ui_PlayersListWidget(object):
 
         self.horizontalLayout.addWidget(self.edit_filter)
 
-        self.pushButton = QPushButton(PlayersListWidget)
-        self.pushButton.setObjectName(u"pushButton")
-        icon = QIcon()
-        icon.addFile(u":/icons/128x128/actions/edit-clear-locationbar-rtl.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton.setIcon(icon)
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addItem(self.horizontalSpacer_6)
+
+        self.label_status = QLabel(PlayersListWidget)
+        self.label_status.setObjectName(u"label_status")
+
+        self.horizontalLayout.addWidget(self.label_status)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -46,9 +55,9 @@ class Ui_PlayersListWidget(object):
 
         self.button_add = QPushButton(PlayersListWidget)
         self.button_add.setObjectName(u"button_add")
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/128x128/actions/document-new-8.png", QSize(), QIcon.Normal, QIcon.On)
-        self.button_add.setIcon(icon1)
+        icon = QIcon()
+        icon.addFile(u":/icons/128x128/actions/document-new-8.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_add.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.button_add)
 
@@ -58,9 +67,9 @@ class Ui_PlayersListWidget(object):
 
         self.button_del = QPushButton(PlayersListWidget)
         self.button_del.setObjectName(u"button_del")
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/128x128/actions/edit-delete-shred.png", QSize(), QIcon.Normal, QIcon.On)
-        self.button_del.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/128x128/actions/edit-delete-shred.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_del.setIcon(icon1)
 
         self.horizontalLayout.addWidget(self.button_del)
 
@@ -72,22 +81,31 @@ class Ui_PlayersListWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_5)
 
-        self.label_status = QLabel(PlayersListWidget)
-        self.label_status.setObjectName(u"label_status")
-
-        self.horizontalLayout.addWidget(self.label_status)
-
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
 
-        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.table_widget = QTableView(PlayersListWidget)
         self.table_widget.setObjectName(u"table_widget")
 
-        self.gridLayout.addWidget(self.table_widget, 1, 0, 1, 1)
+        self.verticalLayout.addWidget(self.table_widget)
+
+
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+
+        self.label_2 = QLabel(PlayersListWidget)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setMinimumSize(QSize(250, 250))
+        self.label_2.setMaximumSize(QSize(250, 250))
+        self.label_2.setFrameShape(QFrame.StyledPanel)
+        self.label_2.setFrameShadow(QFrame.Sunken)
+        self.label_2.setPixmap(QPixmap(u":/icons/bad.jpg"))
+        self.label_2.setScaledContents(True)
+
+        self.gridLayout.addWidget(self.label_2, 0, 1, 1, 1)
 
 
         self.retranslateUi(PlayersListWidget)
@@ -97,9 +115,10 @@ class Ui_PlayersListWidget(object):
 
     def retranslateUi(self, PlayersListWidget):
         PlayersListWidget.setWindowTitle(QCoreApplication.translate("PlayersListWidget", u"Form", None))
-        self.pushButton.setText("")
+        self.label.setText(QCoreApplication.translate("PlayersListWidget", u"Filtre :", None))
+        self.label_status.setText(QCoreApplication.translate("PlayersListWidget", u"Il y actuellement 0 joueur", None))
         self.button_add.setText(QCoreApplication.translate("PlayersListWidget", u"Ajouter un joueur", None))
         self.button_del.setText(QCoreApplication.translate("PlayersListWidget", u"Supprimer", None))
-        self.label_status.setText(QCoreApplication.translate("PlayersListWidget", u"Il y actuellement 0 joueur", None))
+        self.label_2.setText("")
     # retranslateUi
 

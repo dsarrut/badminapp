@@ -1,9 +1,11 @@
 import sys
 from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import Qt
+from PySide2.QtCore import Qt, Signal
 from core import Player
 
 class PlayersTableModel(QtCore.QAbstractTableModel):
+
+    players_changed = Signal()
 
     def __init__(self, players):
         super(PlayersTableModel, self).__init__()
@@ -60,7 +62,6 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
 
 
     def setData(self, index, value, role):
-        print('set data', index, value, role)
         if not index.isValid():
             return False
         if role != QtCore.Qt.EditRole:
@@ -91,6 +92,7 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
         p = Player('nom', 'prénom')
         self._players.insert(row, p)
         self.endInsertRows()
+        self.players_changed.emit()
         return True
 
     def removeRow(self, row, player, parent=QtCore.QModelIndex()):
@@ -98,4 +100,5 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
         if player in self._players:
             self._players.remove(player)
         self.endRemoveRows()
+        self.players_changed.emit()
         return True

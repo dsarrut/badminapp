@@ -1,8 +1,8 @@
 
 from PySide2 import QtWidgets
 from PySide2.QtCore import Slot, Qt, QModelIndex, QSortFilterProxyModel, QItemSelectionModel
-from PySide2.QtGui import QColor, QBrush
-from PySide2.QtWidgets import QAbstractItemView
+from PySide2.QtGui import QColor, QBrush, QPixmap
+from PySide2.QtWidgets import QAbstractItemView, QHeaderView
 from .ui_PlayersListWidget import Ui_PlayersListWidget
 from core import Player
 from .PlayersTableModel import PlayersTableModel
@@ -23,7 +23,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         # set connections
         self.button_del.clicked.connect(self.slot_on_player_del)
         self.button_add.clicked.connect(self.slot_on_player_add)
-
+        self.edit_filter.setClearButtonEnabled(True)
 
     def set_players(self, players):
         self.players = players
@@ -67,20 +67,25 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
 
         # set next one selected
         self.filter_proxy_model.invalidate()
+        if self.selected_row == len(self.players):
+            self.selected_row = self.selected_row-1
         idx = self.model.index(self.selected_row, 0)
         self.table_widget.setCurrentIndex(idx)
         self.table_widget.selectRow(idx.row())
         self.table_widget.setFocus()
+        self.table_widget.repaint()
 
     def slot_on_player_add(self):
         # not sure what to do with the row
         row = 0
+        self.edit_filter.clear()
         self.model.insertRow(row)
         idx = self.model.index(row, self.model.index_id)
         idx = self.filter_proxy_model.mapFromSource(idx)
+        self.table_widget.setCurrentIndex(idx)
         self.table_widget.selectRow(idx.row())
         self.table_widget.setFocus()
-        return
+        self.table_widget.repaint()
 
 
     def set_model(self):
@@ -93,17 +98,31 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         #self.filter_proxy_model.setDynamicSortFilter(False)
         self.filter_proxy_model.setFilterKeyColumn(self.model.index_name) #3is names
         self.filter_proxy_model.setSortLocaleAware(True)
-
-        self.table_widget.setModel(self.filter_proxy_model)
         self.filter_proxy_model.setSortCaseSensitivity(Qt.CaseInsensitive)
+        self.table_widget.setModel(self.filter_proxy_model)
         self.table_widget.setSortingEnabled(True)
 
+        # connect
+        self.model.players_changed.connect(self.slot_on_data_changed)
         self.edit_filter.textChanged.connect(self.filter_proxy_model.setFilterRegExp)
 
         #self.view.horizontalHeader()
         self.table_widget.setColumnHidden(self.model.index_name, True)
         self.table_widget.setColumnHidden(self.model.index_id, True)
+        #self.table_widget.horizontalHeader().setStretchLastSection(True
+        self.table_widget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
 
         self.table_widget.setSelectionModel(QItemSelectionModel(self.model))
         selection = self.table_widget.selectionModel()
         selection.selectionChanged.connect(self.slot_on_cell_activated)
+        self.slot_on_data_changed()
+
+    @Slot()
+    def slot_on_data_changed(self):
+        n = len(self.players)
+        if n<=1:
+            self.label_status.setText(f'{n} joueur')
+        else:
+            self.label_status.setText(f'{n} joueurs')
+
