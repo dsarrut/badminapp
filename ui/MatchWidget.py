@@ -4,6 +4,7 @@ from PySide2.QtCore import Slot, Signal, QSize
 from PySide2.QtGui import QPixmap, QPalette, QColor, QFont
 from PySide2.QtWidgets import QAction
 from .ui_MatchWidget import Ui_MatchWidget
+from ui import TeamWidget
 import platform
 
 class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
@@ -158,8 +159,7 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
         '''
 
         # update team, field
-        self.team1.setText(str(self.match.team1))
-        self.team2.setText(str(self.match.team2))
+        self.update_teams()
         self.update_match_field()
 
         # set the signal
@@ -258,3 +258,18 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
 
         # update
         self.update_match_field()
+
+    def update_teams(self):
+        # remove previous widgets
+        self.verticalLayout.removeWidget(self.team1)
+        self.verticalLayout.removeWidget(self.team2)
+        self.team1.setParent(None)
+        self.team2.setParent(None)
+        del self.team1
+        del self.team2
+        # add team widgets
+        self.team1 = TeamWidget.TeamWidget(self, self.match.team1)
+        self.verticalLayout.addWidget(self.team1)
+        self.team2 = TeamWidget.TeamWidget(self, self.match.team2)
+        self.verticalLayout.addWidget(self.team2)
+

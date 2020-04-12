@@ -7,6 +7,8 @@ from ui import MainWindow
 from core.Player import Player
 from core.Round import Round
 from core.Tournament import Tournament
+import qdarkstyle
+
 
 t = Tournament()
 n = 31
@@ -23,5 +25,9 @@ app = QApplication(sys.argv)
 m = MainWindow()
 m.set_tournament(t)
 m.set_round(round)
+#app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+#app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
+#app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyside2'))
+
 m.show()
 app.exec_()

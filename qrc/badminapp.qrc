@@ -24,6 +24,7 @@
         <file>128x128/actions/edit-delete-shred.png</file>
         <file>128x128/actions/edit-delete-2.png</file>
         <file>128x128/actions/edit-clear-locationbar-rtl.png</file>
+        <file>style_dark_orange.qss</file>
     </qresource>
     <qresource prefix="/css"/>
 </RCC>

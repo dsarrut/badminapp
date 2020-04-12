@@ -57,8 +57,9 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         # last one is id but is hidden, this it the index
         item = QtWidgets.QTableWidgetItem(str(player.id))
         tw.setItem(row, n-1, item)
-        #tw.setColumnHidden(n-1, True) #FIXME
+        tw.setColumnHidden(n-1, True) # set to False for debug
 
+        # return the first column item
         return itemn
 
 
@@ -67,8 +68,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         col = item.column()
         if col > 1:
             return
-        row = item.row()
-        player = self.players[row]
+        player = self.get_current_selected_player()
         if player.get_name(col) != item.text():
             player.set_name(col, item.text())
 
@@ -93,6 +93,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         else:
             self.button_del.setText("Supprimer")
             self.button_del.setEnabled(False)
+
 
     def slot_on_player_del(self):
         player = self.get_current_selected_player()
