@@ -1,7 +1,5 @@
 from .Set import Set
 from .helpers import *
-from .Team import Team
-from .PlayerStats import PlayerStats
 from PySide2.QtCore import Slot, Signal, QObject
 
 class Match(QObject):
@@ -84,7 +82,7 @@ class Match(QObject):
             self._status = w
         if old_status != self._status:
             # update stats relatively to match status
-            self.update_stats_from_match()
+            self.update_stats()
             # emit signal
             self.match_status_changed.emit()
 
@@ -128,22 +126,9 @@ class Match(QObject):
         t = self.get_player_team(player)
         return self.team(t).stats
 
-
-    def update_stats_from_match(self):
+    def update_stats(self):
         print('match update_stats from match')
-        self.team1.update_match_stats(self, 1)
-        self.team2.update_match_stats(self, 2)
-        #self.update_stats_from_set(1)
-        #self.update_stats_from_set(2)
-        #self.update_stats_from_set(3)
-        self.update_players_stats()
-
-    def update_stats_from_set(self, num_set):
-        print('match update_stats from set', num_set)
-        #self.team1.update_set_stats(1, self.set(num_set))
-        #self.team2.update_set_stats(2, self.set(num_set))
-        #self.update_players_stats()
-
-    def update_players_stats(self):
+        self.team1.update_team_stats(self, 1)
+        self.team2.update_team_stats(self, 2)
         self.team1.update_players_stats()
         self.team2.update_players_stats()

@@ -72,12 +72,8 @@ class Set(QObject):
             self._status = self.compute_winner()
         if old_status != self._status:
             self.set_status_changed.emit()
-        #else:
-        #    # update players stats (will be also call if set_status_changed)
-        #    self.match.update_stats_from_set(self._num_set)
-        #    # FIXME here update all players stats ?
-        #    self.match.update_players_stats()
-        self.match.update_stats_from_match()
+        # update
+        self.match.update_stats()
 
     @score1.setter
     def score1(self, value):
