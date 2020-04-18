@@ -1,6 +1,7 @@
 from .Set import Set
 from .helpers import *
 from .Team import Team
+from .PlayerStats import PlayerStats
 from PySide2.QtCore import Slot, Signal, QObject
 
 class Match(QObject):
@@ -8,23 +9,25 @@ class Match(QObject):
     match_status_changed = Signal()
     match_field_changed = Signal()
 
-    def __init__(self, round=round, team1=None, team2=None, field=1):
+    _last_id = 0
+
+    def __init__(self, round, team1, team2, field):
         QObject.__init__(self)
-        if not team1:
-            team1 = Team()
-        if not team2:
-            team2 = Team()
+        self._round = round
         self.team1 = team1
         self.team2 = team2
         self.field = field
-        self.set1 = Set(self)
-        self.set2 = Set(self)
-        self.set3 = Set(self)
-        self._round = round
+        self.set1 = Set(self, 1)
+        self.set2 = Set(self, 2)
+        self.set3 = Set(self, 3)
+        self.team1.add_match(self)
+        self.team2.add_match(self)
         self.set1.set_status_changed.connect(self.on_set_status_changed)
         self.set2.set_status_changed.connect(self.on_set_status_changed)
         self.set3.set_status_changed.connect(self.on_set_status_changed)
         self._status = 0 # -1 invalid, 0 in progress, 1 or 2 for winner
+        self.id = Match._last_id+1
+        Match._last_id = self.id
 
     def __str__(self):
         s = f'match {self.team1} vs {self.team2} : {self.set1} {self.set2} {self.set3}'
@@ -80,6 +83,9 @@ class Match(QObject):
             w = self.compute_winner()
             self._status = w
         if old_status != self._status:
+            # update stats relatively to match status
+            self.update_stats_from_match()
+            # emit signal
             self.match_status_changed.emit()
 
 
@@ -91,7 +97,9 @@ class Match(QObject):
         if ws2 == 0:
             return 0
         if ws1 == ws2:
+            self.two_sets_only = True
             return ws1
+        self.two_sets_only = False
         ws3 = self.set3.compute_winner()
         return ws3
 
@@ -110,3 +118,32 @@ class Match(QObject):
     def swap_field(self, field):
         self.round.swap_field(self, field)
 
+
+    def get_player_team(self, player):
+        if player == self.team1.player1 or player == self.team1.player2:
+            return 1
+        return 2
+
+    def get_player_match_stats(self, player):
+        t = self.get_player_team(player)
+        return self.team(t).stats
+
+
+    def update_stats_from_match(self):
+        print('match update_stats from match')
+        self.team1.update_match_stats(self, 1)
+        self.team2.update_match_stats(self, 2)
+        #self.update_stats_from_set(1)
+        #self.update_stats_from_set(2)
+        #self.update_stats_from_set(3)
+        self.update_players_stats()
+
+    def update_stats_from_set(self, num_set):
+        print('match update_stats from set', num_set)
+        #self.team1.update_set_stats(1, self.set(num_set))
+        #self.team2.update_set_stats(2, self.set(num_set))
+        #self.update_players_stats()
+
+    def update_players_stats(self):
+        self.team1.update_players_stats()
+        self.team2.update_players_stats()

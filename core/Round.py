@@ -30,7 +30,7 @@ class Round:
         self.players = players
 
     def create_matches(self):
-        print('FIXME later, do it with random')
+        print('FIXME round create matches do it with random')
         pl = random.sample(self.players, len(self.players))
         # no field number for the moment
         # create matches

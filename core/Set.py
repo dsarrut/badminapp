@@ -5,14 +5,13 @@ class Set(QObject):
 
     set_status_changed = Signal()
 
-    def __init__(self, match):
+    def __init__(self, match, num_set):
         QObject.__init__(self)
         self._score1 = 0
         self._score2 = 0
         self._status = 0 # -1 invalid, 0 in progress, 1 or 2 for winner
+        self._num_set = num_set
         self._match = match
-        #self._max_point_value = 29
-        #self._win_point_value = 21
         self._point_current_max = 21
 
     def __str__(self):
@@ -56,14 +55,14 @@ class Set(QObject):
         if i == 2:
             return self._point_current_max
 
-    def update_max(self):
+    def update(self):
+        # internal : max point, win point
         m = self.win_point_value-2
         if self.score1 > m and self.score2 > m:
             self._point_current_max = min(self.score1, self.score2)+2
         else:
             self._point_current_max = self.win_point_value
-
-    def update_validity(self):
+        # status
         old_status = self._status
         if self.score1 > self._point_current_max:
             self._status = -1
@@ -73,18 +72,26 @@ class Set(QObject):
             self._status = self.compute_winner()
         if old_status != self._status:
             self.set_status_changed.emit()
+        #else:
+        #    # update players stats (will be also call if set_status_changed)
+        #    self.match.update_stats_from_set(self._num_set)
+        #    # FIXME here update all players stats ?
+        #    self.match.update_players_stats()
+        self.match.update_stats_from_match()
 
     @score1.setter
     def score1(self, value):
+        if value == self._score1:
+            return
         self._score1 = value
-        self.update_max()
-        self.update_validity()
+        self.update()
 
     @score2.setter
     def score2(self, value):
+        if value == self._score2:
+            return
         self._score2 = value
-        self.update_max()
-        self.update_validity()
+        self.update()
 
     def set_score(self, i, value):
         if i == 1:

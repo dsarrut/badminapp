@@ -45,27 +45,32 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_5)
 
-        self.label_left = QLabel(self.groupBox)
-        self.label_left.setObjectName(u"label_left")
-
-        self.horizontalLayout.addWidget(self.label_left)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.horizontalLayout.addItem(self.verticalSpacer)
-
-        self.horizontalSpacer = QSpacerItem(143, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
-
         self.button_random = QPushButton(self.groupBox)
         self.button_random.setObjectName(u"button_random")
 
         self.horizontalLayout.addWidget(self.button_random)
 
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_6)
+
+        self.label_left = QLabel(self.groupBox)
+        self.label_left.setObjectName(u"label_left")
+
+        self.horizontalLayout.addWidget(self.label_left)
+
+        self.button_next_round = QPushButton(self.groupBox)
+        self.button_next_round.setObjectName(u"button_next_round")
+
+        self.horizontalLayout.addWidget(self.button_next_round)
+
         self.horizontalSpacer_3 = QSpacerItem(143, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_3)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
 
         self.label_center = QLabel(self.groupBox)
         self.label_center.setObjectName(u"label_center")
@@ -78,11 +83,6 @@ class Ui_RoundWidget(object):
         self.horizontalSpacer_4 = QSpacerItem(142, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_4)
-
-        self.button_next_round = QPushButton(self.groupBox)
-        self.button_next_round.setObjectName(u"button_next_round")
-
-        self.horizontalLayout.addWidget(self.button_next_round)
 
         self.horizontalSpacer_2 = QSpacerItem(143, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -109,15 +109,15 @@ class Ui_RoundWidget(object):
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.page_2.setGeometry(QRect(0, 0, 1262, 659))
-        self.widget = QWidget(self.page_2)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(120, 60, 381, 128))
-        self.verticalLayout_2 = QVBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.page_2)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(120, 60, 381, 128))
+        self.verticalLayout_2 = QVBoxLayout(self.layoutWidget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.label_2 = QLabel(self.widget)
+        self.label_2 = QLabel(self.layoutWidget)
         self.label_2.setObjectName(u"label_2")
         font1 = QFont()
         font1.setPointSize(19)
@@ -125,7 +125,7 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
-        self.spin_fields = QSpinBox(self.widget)
+        self.spin_fields = QSpinBox(self.layoutWidget)
         self.spin_fields.setObjectName(u"spin_fields")
         self.spin_fields.setMinimumSize(QSize(80, 0))
         self.spin_fields.setMaximumSize(QSize(80, 16777215))
@@ -139,13 +139,13 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.label_3 = QLabel(self.widget)
+        self.label_3 = QLabel(self.layoutWidget)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setFont(font1)
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
-        self.spin_win_point_value = QSpinBox(self.widget)
+        self.spin_win_point_value = QSpinBox(self.layoutWidget)
         self.spin_win_point_value.setObjectName(u"spin_win_point_value")
         self.spin_win_point_value.setMinimumSize(QSize(80, 0))
         self.spin_win_point_value.setMaximumSize(QSize(80, 16777215))
@@ -159,13 +159,13 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_7 = QLabel(self.widget)
+        self.label_7 = QLabel(self.layoutWidget)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font1)
 
         self.horizontalLayout_7.addWidget(self.label_7)
 
-        self.spin_max_point_value = QSpinBox(self.widget)
+        self.spin_max_point_value = QSpinBox(self.layoutWidget)
         self.spin_max_point_value.setObjectName(u"spin_max_point_value")
         self.spin_max_point_value.setMinimumSize(QSize(80, 0))
         self.spin_max_point_value.setMaximumSize(QSize(80, 16777215))
@@ -184,7 +184,7 @@ class Ui_RoundWidget(object):
 
         self.retranslateUi(RoundWidget)
 
-        self.toolBox.setCurrentIndex(1)
+        self.toolBox.setCurrentIndex(0)
         self.toolBox.layout().setSpacing(0)
 
 
@@ -195,10 +195,10 @@ class Ui_RoundWidget(object):
         RoundWidget.setWindowTitle(QCoreApplication.translate("RoundWidget", u"Form", None))
         self.groupBox.setTitle("")
         self.button_random_scores.setText(QCoreApplication.translate("RoundWidget", u"rnd", None))
-        self.label_left.setText("")
         self.button_random.setText(QCoreApplication.translate("RoundWidget", u"Go !", None))
-        self.label_center.setText(QCoreApplication.translate("RoundWidget", u"14 matches - 5 en cours - 4 termin\u00e9s", None))
+        self.label_left.setText("")
         self.button_next_round.setText(QCoreApplication.translate("RoundWidget", u"Prochain tour", None))
+        self.label_center.setText(QCoreApplication.translate("RoundWidget", u"14 matches - 5 en cours - 4 termin\u00e9s", None))
         self.label.setText(QCoreApplication.translate("RoundWidget", u"TextLabel", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("RoundWidget", u"Tour n\u00b03", None))
         self.label_2.setText(QCoreApplication.translate("RoundWidget", u"Nombre de terrains :", None))

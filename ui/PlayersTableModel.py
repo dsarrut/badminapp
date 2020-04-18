@@ -22,6 +22,10 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
         self.headers.append('id')
         self.index_name = self.headers.index('name')
         self.index_id = self.headers.index('id')
+        self.index_played_matches = 3
+        self.index_win_matches = 4
+        self.index_loose_sets = 5
+        self.index_points = 6
 
     def data(self, index, role):
         if role == Qt.DisplayRole:
@@ -29,7 +33,7 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
             # .row() indexes into the outer list,
             # .column() indexes into the sub-list
             p = self._players[index.row()]
-            #print(index.row(), p)
+            #print(index.row(), p, p.stats)
             c = index.column()
             if c == 0:
                 return p.first_name
@@ -39,7 +43,15 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
                 return p.id
             if c == self.index_name:
                 return str(p).lower()
-            return '12'
+            if c == self.index_played_matches:
+                return p.stats.match_count
+            if c == self.index_win_matches:
+                return p.stats.match_win_count
+            if c == self.index_loose_sets:
+                return p.stats.set_loose_count
+            if c == self.index_points:
+                return p.stats.points_diff
+            return str(666)
 
 
     def rowCount(self, index):
