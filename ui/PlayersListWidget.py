@@ -6,6 +6,7 @@ from PySide2.QtWidgets import QAbstractItemView, QHeaderView
 from .ui_PlayersListWidget import Ui_PlayersListWidget
 from core import Player
 from .PlayersTableModel import PlayersTableModel
+from .PlayersTableSortFilterProxyModel import PlayersTableSortFilterProxyModel
 
 class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
 
@@ -93,7 +94,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         self.table_widget.setModel(self.model)
 
         # filter and sorting
-        self.filter_proxy_model = QSortFilterProxyModel()
+        self.filter_proxy_model = PlayersTableSortFilterProxyModel() #QSortFilterProxyModel()
         self.filter_proxy_model.setSourceModel(self.model)
         #self.filter_proxy_model.setDynamicSortFilter(False)
         self.filter_proxy_model.setFilterKeyColumn(self.model.index_name) #3is names
@@ -109,10 +110,31 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         #self.view.horizontalHeader()
         self.table_widget.setColumnHidden(self.model.index_name, True)
         self.table_widget.setColumnHidden(self.model.index_id, True)
+
+        # column sizes
         #self.table_widget.horizontalHeader().setStretchLastSection(True
-        self.table_widget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        header = self.table_widget.horizontalHeader()
+        #header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
+        #header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        #header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
+        #header.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeToContents)
+        #header.setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeToContents)
+        #self.table_widget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
+        # center column
+        class AlignDelegate(QtWidgets.QStyledItemDelegate):
+            def initStyleOption(self, option, index):
+                super(AlignDelegate, self).initStyleOption(option, index)
+                option.displayAlignment = Qt.AlignCenter
+        delegate = AlignDelegate(self.table_widget)
+        self.table_widget.setItemDelegateForColumn(2, delegate)
+        self.table_widget.setItemDelegateForColumn(3, delegate)
+        self.table_widget.setItemDelegateForColumn(4, delegate)
+        self.table_widget.setItemDelegateForColumn(5, delegate)
 
+        self.table_widget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+
+        # selection policy
         self.table_widget.setSelectionModel(QItemSelectionModel(self.model))
         selection = self.table_widget.selectionModel()
         selection.selectionChanged.connect(self.slot_on_cell_activated)

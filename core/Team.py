@@ -63,5 +63,5 @@ class Team:
                 self._stats.set_loose_count = self._stats.set_loose_count + 1
 
     def update_players_stats(self):
-        self.player1.update_stats() # FIXME update only one match !!
+        self.player1.update_stats() # FIXME update only one match ?
         self.player2.update_stats()

@@ -127,7 +127,6 @@ class Match(QObject):
         return self.team(t).stats
 
     def update_stats(self):
-        print('match update_stats from match')
         self.team1.update_team_stats(self, 1)
         self.team2.update_team_stats(self, 2)
         self.team1.update_players_stats()

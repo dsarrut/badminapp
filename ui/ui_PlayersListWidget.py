@@ -21,10 +21,8 @@ class Ui_PlayersListWidget(object):
     def setupUi(self, PlayersListWidget):
         if PlayersListWidget.objectName():
             PlayersListWidget.setObjectName(u"PlayersListWidget")
-        PlayersListWidget.resize(1066, 449)
-        self.gridLayout = QGridLayout(PlayersListWidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.verticalLayout = QVBoxLayout()
+        PlayersListWidget.resize(1083, 545)
+        self.verticalLayout = QVBoxLayout(PlayersListWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -88,24 +86,33 @@ class Ui_PlayersListWidget(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.table_widget = QTableView(PlayersListWidget)
         self.table_widget.setObjectName(u"table_widget")
 
-        self.verticalLayout.addWidget(self.table_widget)
+        self.horizontalLayout_2.addWidget(self.table_widget)
 
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_7)
 
         self.label_2 = QLabel(PlayersListWidget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setMinimumSize(QSize(250, 250))
-        self.label_2.setMaximumSize(QSize(250, 250))
+        self.label_2.setMaximumSize(QSize(350, 350))
         self.label_2.setFrameShape(QFrame.StyledPanel)
         self.label_2.setFrameShadow(QFrame.Sunken)
         self.label_2.setPixmap(QPixmap(u":/icons/bad.jpg"))
         self.label_2.setScaledContents(True)
 
-        self.gridLayout.addWidget(self.label_2, 0, 1, 1, 1)
+        self.horizontalLayout_2.addWidget(self.label_2)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_8)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
 
 
         self.retranslateUi(PlayersListWidget)
