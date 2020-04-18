@@ -1,10 +1,14 @@
 from .Match import Match
 from .Team import Team
 import random
+from PySide2.QtCore import Signal, QObject
 
-class Round:
+class Round(QObject):
+
+    debug_mode_changed = Signal()
 
     def __init__(self, tournament):
+        QObject.__init__(self)
         self.tournament = tournament
         self.number = len(tournament.rounds)+1
         self.matches = []
@@ -13,6 +17,7 @@ class Round:
         self.waiting_players = []
         self._max_point_value = 29
         self._win_point_value = 21
+        self._debug_mode = False
 
     def __str__(self):
         s = f'Round {self.number}'
@@ -26,20 +31,30 @@ class Round:
     def win_point_value(self):
         return self._win_point_value
 
+    @property
+    def debug_mode(self):
+        return self._debug_mode
+
+    def set_debug_mode(self, value):
+        self._debug_mode = value
+        self.debug_mode_changed.emit()
+
     def set_players_list(self, players):
         self.players = players
 
     def create_matches(self):
-        print('FIXME round create matches do it with random')
+        self.create_matches_random()
+
+    def create_matches_random(self):
+        # complete random
         pl = random.sample(self.players, len(self.players))
-        # no field number for the moment
         # create matches
         i=0
         n = len(pl)
         f = 1
         self.matches = []
         self.waiting_players = []
-        while i<n-4:
+        while i<=n-4:
             p1 = pl[i]
             p2 = pl[i+1]
             p3 = pl[i+2]

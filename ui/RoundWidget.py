@@ -19,7 +19,6 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
     def set_round(self, round):
         self.round = round
-        print(round.tournament)
         n = round.number
         s = QCoreApplication.translate("RoundWidget", u"Tour n\u00b0"+str(n), None)
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), s)
@@ -67,6 +66,12 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         # set current tab
         self.toolBox.setCurrentIndex(0)
 
+        # debug mode
+        print('debug = ',self.round.debug_mode)
+        self.button_random_scores.setEnabled(self.round.debug_mode)
+        self.button_random_scores.setVisible(self.round.debug_mode)
+        self.round.debug_mode_changed.connect(self.slot_on_debug_mode_changed)
+
     @Slot()
     def slot_on_random(self):
         print('FIXME read and set round properties here')
@@ -107,3 +112,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
             self.button_next_round.setEnabled(False)
 
         
+    @Slot()
+    def slot_on_debug_mode_changed(self):
+        self.button_random_scores.setEnabled(self.round.debug_mode)
+        self.button_random_scores.setVisible(self.round.debug_mode)

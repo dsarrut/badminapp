@@ -50,6 +50,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -61,24 +62,22 @@
    </property>
    <widget class="QMenu" name="menucoucou">
     <property name="title">
-     <string>coucou</string>
+     <string>Options</string>
     </property>
-    <addaction name="actionyop"/>
+    <addaction name="action_debug_mode"/>
     <addaction name="action_exit"/>
    </widget>
-   <widget class="QMenu" name="menutoto">
-    <property name="title">
-     <string>toto</string>
-    </property>
-    <addaction name="action_random_score"/>
-   </widget>
    <addaction name="menucoucou"/>
-   <addaction name="menutoto"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_random_score">
+  <action name="action_debug_mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>random score</string>
+    <string>Debug mode</string>
+   </property>
+   <property name="toolTip">
+    <string>Debug mode</string>
    </property>
   </action>
   <action name="actionyop">

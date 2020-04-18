@@ -41,14 +41,23 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout.addWidget(self.button_random_scores)
 
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_5)
-
         self.button_random = QPushButton(self.groupBox)
         self.button_random.setObjectName(u"button_random")
+        icon = QIcon()
+        icon.addFile(u":/icons/128x128/actions/roll-2.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_random.setIcon(icon)
+        self.button_random.setIconSize(QSize(32, 32))
 
         self.horizontalLayout.addWidget(self.button_random)
+
+        self.buttun_swiss = QPushButton(self.groupBox)
+        self.buttun_swiss.setObjectName(u"buttun_swiss")
+        icon1 = QIcon()
+        icon1.addFile(u":/css/60px-Nuvola_Swiss_flag.svg.png", QSize(), QIcon.Normal, QIcon.On)
+        self.buttun_swiss.setIcon(icon1)
+        self.buttun_swiss.setIconSize(QSize(32, 32))
+
+        self.horizontalLayout.addWidget(self.buttun_swiss)
 
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -195,7 +204,16 @@ class Ui_RoundWidget(object):
         RoundWidget.setWindowTitle(QCoreApplication.translate("RoundWidget", u"Form", None))
         self.groupBox.setTitle("")
         self.button_random_scores.setText(QCoreApplication.translate("RoundWidget", u"rnd", None))
-        self.button_random.setText(QCoreApplication.translate("RoundWidget", u"Go !", None))
+#if QT_CONFIG(tooltip)
+        self.button_random.setToolTip(QCoreApplication.translate("RoundWidget", u"G\u00e9n\u00e9rer les matchs au hasard", None))
+#endif // QT_CONFIG(tooltip)
+        self.button_random.setText("")
+#if QT_CONFIG(tooltip)
+        self.buttun_swiss.setToolTip(QCoreApplication.translate("RoundWidget", u"G\u00e9n\u00e9rer les matchs en \"ronde Suisse\"", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        self.buttun_swiss.setShortcut(QCoreApplication.translate("RoundWidget", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
         self.label_left.setText("")
         self.button_next_round.setText(QCoreApplication.translate("RoundWidget", u"Prochain tour", None))
         self.label_center.setText(QCoreApplication.translate("RoundWidget", u"14 matches - 5 en cours - 4 termin\u00e9s", None))

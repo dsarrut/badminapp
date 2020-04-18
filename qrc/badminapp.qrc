@@ -26,6 +26,10 @@
         <file>128x128/actions/edit-clear-locationbar-rtl.png</file>
         <file>style_dark_orange.qss</file>
         <file>bad.jpg</file>
+        <file>128x128/actions/roll-2.png</file>
+        <file>swiss.png</file>
     </qresource>
-    <qresource prefix="/css"/>
+    <qresource prefix="/css">
+        <file>60px-Nuvola_Swiss_flag.svg.png</file>
+    </qresource>
 </RCC>

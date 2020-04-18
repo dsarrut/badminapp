@@ -94,7 +94,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         self.table_widget.setModel(self.model)
 
         # filter and sorting
-        self.filter_proxy_model = PlayersTableSortFilterProxyModel() #QSortFilterProxyModel()
+        self.filter_proxy_model = PlayersTableSortFilterProxyModel()
         self.filter_proxy_model.setSourceModel(self.model)
         #self.filter_proxy_model.setDynamicSortFilter(False)
         self.filter_proxy_model.setFilterKeyColumn(self.model.index_name) #3is names
@@ -113,7 +113,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
 
         # column sizes
         #self.table_widget.horizontalHeader().setStretchLastSection(True
-        header = self.table_widget.horizontalHeader()
+        #header = self.table_widget.horizontalHeader()
         #header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
         #header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
         #header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
@@ -131,7 +131,6 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         self.table_widget.setItemDelegateForColumn(3, delegate)
         self.table_widget.setItemDelegateForColumn(4, delegate)
         self.table_widget.setItemDelegateForColumn(5, delegate)
-
         self.table_widget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
 
         # selection policy

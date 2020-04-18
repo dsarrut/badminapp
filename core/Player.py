@@ -1,6 +1,6 @@
 from random import randint
 import io
-from PySide2.QtCore import Slot, Signal, QObject
+from PySide2.QtCore import Signal, QObject
 from .PlayerStats import PlayerStats
 
 word_file = "qrc/nouns.txt"

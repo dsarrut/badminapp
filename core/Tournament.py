@@ -20,6 +20,7 @@ class Tournament:
             r.fields_number = pr.fields_number
             r.set_win_point_value(pr.win_point_value)
             r.set_max_point_value(pr.max_point_value)
+            r.set_debug_mode(pr.debug_mode)
         self.rounds.append(r)
         r.set_players_list(self.players)
         return r

@@ -21,8 +21,10 @@ class Ui_PlayersListWidget(object):
     def setupUi(self, PlayersListWidget):
         if PlayersListWidget.objectName():
             PlayersListWidget.setObjectName(u"PlayersListWidget")
-        PlayersListWidget.resize(1083, 545)
-        self.verticalLayout = QVBoxLayout(PlayersListWidget)
+        PlayersListWidget.resize(1274, 544)
+        self.horizontalLayout_2 = QHBoxLayout(PlayersListWidget)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -86,19 +88,25 @@ class Ui_PlayersListWidget(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.table_widget = QTableView(PlayersListWidget)
         self.table_widget.setObjectName(u"table_widget")
 
-        self.horizontalLayout_2.addWidget(self.table_widget)
+        self.verticalLayout.addWidget(self.table_widget)
 
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_7)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
+
+        self.horizontalSpacer_8 = QSpacerItem(26, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_8)
 
         self.label_2 = QLabel(PlayersListWidget)
         self.label_2.setObjectName(u"label_2")
+        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
         self.label_2.setMaximumSize(QSize(350, 350))
         self.label_2.setFrameShape(QFrame.StyledPanel)
         self.label_2.setFrameShadow(QFrame.Sunken)
@@ -107,12 +115,9 @@ class Ui_PlayersListWidget(object):
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_7 = QSpacerItem(25, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_8)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_7)
 
 
         self.retranslateUi(PlayersListWidget)
