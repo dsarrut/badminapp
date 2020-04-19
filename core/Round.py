@@ -63,11 +63,9 @@ class Round(QObject):
                     reverse=True)
         # put waiting players at the end
         w = len(self.selected_players)%4
-        print(w, len(self.selected_players))
         wplayers = []
         for i in range(w):
             wplayers.append(randint(0,len(self.selected_players)-1))
-        print(wplayers)
         for p in wplayers:
             pl.append(pl.pop(p))
         self.create_matches_from_list(pl)
@@ -171,7 +169,6 @@ class Round(QObject):
 
     def setTerminated(self, v):
         self.terminated = v
-        print('emit')
         self.round_termination_changed.emit()
 
     def is_last_round(self):
@@ -179,3 +176,7 @@ class Round(QObject):
         if n == len(self.tournament.rounds):
             return True
         return False
+
+    def remove_match_for_players(self, match):
+        match.team1.remove_match(match)
+        match.team2.remove_match(match)

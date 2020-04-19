@@ -114,8 +114,6 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
         Slot: update the spin color if the set is win
         '''
         m = self.match
-        #print('update color', m)
-        #print('set', m.set3)
         self.set_spin_box_color(m.set1.status, 1)
         self.set_spin_box_color(m.set2.status, 2)
         self.set_spin_box_color(m.set3.status, 3)

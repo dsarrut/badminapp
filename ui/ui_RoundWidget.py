@@ -34,6 +34,7 @@ class Ui_RoundWidget(object):
         self.groupBox = QGroupBox(self.page)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setMaximumSize(QSize(16777215, 60))
+        self.groupBox.setFlat(False)
         self.gridLayout_4 = QGridLayout(self.groupBox)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.horizontalLayout = QHBoxLayout()
@@ -60,10 +61,6 @@ class Ui_RoundWidget(object):
         self.button_random_scores.setObjectName(u"button_random_scores")
 
         self.horizontalLayout.addWidget(self.button_random_scores)
-
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_6)
 
         self.horizontalSpacer_3 = QSpacerItem(143, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -108,14 +105,6 @@ class Ui_RoundWidget(object):
         self.button_next_round.setIconSize(QSize(25, 25))
 
         self.horizontalLayout.addWidget(self.button_next_round)
-
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_10)
-
-        self.horizontalSpacer_2 = QSpacerItem(143, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
 
         self.gridLayout_4.addLayout(self.horizontalLayout, 0, 0, 1, 1)

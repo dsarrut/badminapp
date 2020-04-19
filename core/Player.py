@@ -63,6 +63,12 @@ class Player(QObject):
             return
         self.matches.append(match)
 
+    def remove_match(self, match):
+        if match == None:
+            return
+        self.matches.remove(match)
+        self.update_stats()
+
     def update_stats(self):
         self._stats = PlayerStats()
         for m in self.matches:

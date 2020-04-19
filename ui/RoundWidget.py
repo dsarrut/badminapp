@@ -1,6 +1,5 @@
-
 from PySide2 import QtWidgets
-from PySide2.QtCore import Slot, QCoreApplication, QSortFilterProxyModel, Qt, QItemSelectionModel
+from PySide2.QtCore import Slot, QCoreApplication, QSortFilterProxyModel, Qt
 from .ui_RoundWidget import Ui_RoundWidget
 from ui import MatchWidget
 from ui.WaitingPlayersWidget import WaitingPlayersWidget
@@ -14,6 +13,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
         self.fields = {}
         self.parent = parent
+
         # signal button
         self.button_random.clicked.connect(self.slot_on_random)
         self.button_swiss.clicked.connect(self.slot_on_swiss_random)
@@ -96,11 +96,17 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.generate_matches()
 
     def generate_matches(self):
+        print('generate match, previous ', len(self.round.matches))
+        for m in self.round.matches:
+            self.round.remove_match_for_players(m)
+        self.round.matches.clear()
         self.round.fields_number = self.spin_fields.value()
         self.round.set_max_point_value(self.spin_max_point_value.value())
         self.round.set_win_point_value(self.spin_win_point_value.value())
         self.round.create_matches()
         self.set_round(self.round)
+        #self.button_swiss.setEnabled(False)
+        #self.button_random.setEnabled(False)
 
     @Slot()
     def slot_on_random_scores(self):
@@ -137,14 +143,23 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
 
     def setup_players_list(self):
-        players = self.round.tournament.players
+        if self.round.terminated:
+            players = self.round.selected_players
+        else:
+            players = self.round.tournament.players
         f = f'Options du tour n°{self.round.number}'
         self.label_options.setText(f)
         # setup model
         self.model = RoundPlayersTableModel(players)
         self.table_widget.setModel(self.model)
         self.table_widget.setAlternatingRowColors(True)
-        self.model.dataChanged.connect(self.slot_on_players_change)
+        if not self.round.terminated:
+            self.model.dataChanged.connect(self.slot_on_players_change)
+        else:
+            self.table_widget.setEnabled(False)
+            self.spin_win_point_value.setEnabled(False)
+            self.spin_max_point_value.setEnabled(False)
+            self.spin_fields.setEnabled(False)
 
         # filter
         self.filter_proxy_model = QSortFilterProxyModel()
@@ -191,12 +206,11 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
             self.parent.slot_on_next_round()
         else:
             self.parent.set_tab_round(self.round.number+1)
+        self.setup_players_list()
 
     @Slot()
     def slot_on_previous_round(self):
-        print('prev')
         idx = self.round.tournament.rounds.index(self.round)
-        print(idx)
         if idx>0:
             self.parent.set_tab_round(idx)
 
@@ -210,21 +224,17 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.button_swiss.setEnabled(f)
         t = self.round.tournament
         index = t.rounds.index(self.round)
-        print(index)
         self.update_buttons_next_previous()
 
     def update_buttons_next_previous(self):
-        print("update button", self.round)
         if self.round.number == 1:
             self.button_previous_round.setEnabled(False)
         else:
             self.button_previous_round.setEnabled(True)
-
         if self.round.terminated:
             self.button_next_round.setText('Tour suivant')
             self.button_next_round.setEnabled(True)
             return
-
         nb_win = self.round.nb_of_terminated_matches()
         n = len(self.round.matches)
         if nb_win == n and n != 0:

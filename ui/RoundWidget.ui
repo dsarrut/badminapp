@@ -58,6 +58,9 @@
          <property name="title">
           <string/>
          </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout">
@@ -112,19 +115,6 @@
                <string>scores rnd</string>
               </property>
              </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_6">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
             </item>
             <item>
              <spacer name="horizontalSpacer_3">
@@ -230,32 +220,6 @@
                <string/>
               </property>
              </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_10">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>143</width>
-                <height>13</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </item>

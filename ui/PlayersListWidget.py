@@ -1,10 +1,7 @@
 
 from PySide2 import QtWidgets
-from PySide2.QtCore import Slot, Qt, QModelIndex, QSortFilterProxyModel, QItemSelectionModel
-from PySide2.QtGui import QColor, QBrush, QPixmap
-from PySide2.QtWidgets import QAbstractItemView, QHeaderView
+from PySide2.QtCore import Slot, Qt, QItemSelectionModel
 from .ui_PlayersListWidget import Ui_PlayersListWidget
-from core import Player
 from .PlayersTableModel import PlayersTableModel
 from .PlayersTableSortFilterProxyModel import PlayersTableSortFilterProxyModel
 
@@ -148,3 +145,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         else:
             self.label_status.setText(f'{n} joueurs')
 
+
+    def showEvent(self, event):
+        # invalidate to resort the data
+        self.filter_proxy_model.invalidate()

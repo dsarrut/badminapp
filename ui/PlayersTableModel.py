@@ -34,7 +34,6 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
             # .row() indexes into the outer list,
             # .column() indexes into the sub-list
             p = self._players[index.row()]
-            #print(index.row(), p, p.stats)
             c = index.column()
             if c == 0:
                 return p.first_name
@@ -73,7 +72,6 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
 
 
     def flags(self, index):
-        #print('flags', index)
         original_flags = super(PlayersTableModel, self).flags(index)
         if index.column()>1:
             return original_flags

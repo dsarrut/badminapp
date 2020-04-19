@@ -61,17 +61,10 @@ class RoundPlayersTableModel(QtCore.QAbstractTableModel):
 
 
     def flags(self, index):
-        #print('flags', index)
         original_flags = super(RoundPlayersTableModel, self).flags(index)
-
         if index.column() == 0:
-            #print('icol')
             return Qt.ItemIsUserCheckable | Qt.ItemIsSelectable | Qt.ItemIsEnabled
         return original_flags
-        #if index.column()>1:
-        #    return original_flags
-        #return original_flags | QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable
-
 
     def setData(self, index, value, role):
         if not index.isValid():

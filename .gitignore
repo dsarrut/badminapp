@@ -17,3 +17,5 @@ venv/
 /#badminapp.txt#
 /backup
 /save
+.DS_Store
+

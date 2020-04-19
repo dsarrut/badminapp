@@ -9,7 +9,6 @@ class PlayersTableSortFilterProxyModel(QtCore.QSortFilterProxyModel):
         super(PlayersTableSortFilterProxyModel, self).__init__()
 
     def lessThan(self, source_left, source_right):
-        #print('lesstahn', source_left, source_right)
         model = source_left.model()
         if model.index_points == source_left.column():
             pl = model._players[source_left.row()].stats.points_diff
@@ -25,22 +24,18 @@ class PlayersTableSortFilterProxyModel(QtCore.QSortFilterProxyModel):
                 return True
             if pl.stats.match_win_count > pr.stats.match_win_count:
                 return False
-            #print('equal m win', pl, pr, pl.stats)
             if pl.stats.set_diff < pr.stats.set_diff:
                 return True
             if pl.stats.set_diff > pr.stats.set_diff:
                 return False
-            #print('equal set', pl, pr, pl.stats)
             if pl.stats.points_diff < pr.stats.points_diff:
                 return True
             if pl.stats.points_diff > pr.stats.points_diff:
                 return False
-            #print('equal points', pl, pr, pl.stats)
             if pl.stats.match_count < pr.stats.match_count:
                 return True
             if pl.stats.match_count > pr.stats.match_count:
                 return False
-            #print('equal nb match', pl, pr, pl.stats)
             # Strict equality here !!
             return True
         # default
