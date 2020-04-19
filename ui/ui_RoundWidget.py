@@ -34,7 +34,9 @@ class Ui_RoundWidget(object):
         self.groupBox = QGroupBox(self.page)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setMaximumSize(QSize(16777215, 60))
-        self.horizontalLayout = QHBoxLayout(self.groupBox)
+        self.gridLayout_4 = QGridLayout(self.groupBox)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.button_random = QPushButton(self.groupBox)
         self.button_random.setObjectName(u"button_random")
@@ -63,11 +65,6 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_6)
 
-        self.label_left = QLabel(self.groupBox)
-        self.label_left.setObjectName(u"label_left")
-
-        self.horizontalLayout.addWidget(self.label_left)
-
         self.horizontalSpacer_3 = QSpacerItem(143, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_3)
@@ -94,18 +91,39 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_4)
 
+        self.button_previous_round = QPushButton(self.groupBox)
+        self.button_previous_round.setObjectName(u"button_previous_round")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/128x128/actions/go-previous-9.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_previous_round.setIcon(icon2)
+        self.button_previous_round.setIconSize(QSize(25, 25))
+
+        self.horizontalLayout.addWidget(self.button_previous_round)
+
         self.button_next_round = QPushButton(self.groupBox)
         self.button_next_round.setObjectName(u"button_next_round")
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/128x128/actions/go-next-9.png", QSize(), QIcon.Normal, QIcon.On)
-        self.button_next_round.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/128x128/actions/go-next-9.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_next_round.setIcon(icon3)
         self.button_next_round.setIconSize(QSize(25, 25))
 
         self.horizontalLayout.addWidget(self.button_next_round)
 
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_10)
+
         self.horizontalSpacer_2 = QSpacerItem(143, 13, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
+
+
+        self.gridLayout_4.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+
+        self.label_left = QLabel(self.groupBox)
+        self.label_left.setObjectName(u"label_left")
+
+        self.gridLayout_4.addWidget(self.label_left, 0, 1, 1, 1)
 
 
         self.verticalLayout.addWidget(self.groupBox)
@@ -294,7 +312,7 @@ class Ui_RoundWidget(object):
 
         self.retranslateUi(RoundWidget)
 
-        self.toolBox.setCurrentIndex(1)
+        self.toolBox.setCurrentIndex(0)
         self.toolBox.layout().setSpacing(0)
 
 
@@ -318,13 +336,17 @@ class Ui_RoundWidget(object):
         self.button_swiss.setShortcut("")
 #endif // QT_CONFIG(shortcut)
         self.button_random_scores.setText(QCoreApplication.translate("RoundWidget", u"scores rnd", None))
-        self.label_left.setText("")
         self.label_players_2.setText(QCoreApplication.translate("RoundWidget", u"Participants 24/30", None))
         self.label_center.setText(QCoreApplication.translate("RoundWidget", u"14 matches - 5 en cours - 4 termin\u00e9s", None))
+        self.button_previous_round.setText(QCoreApplication.translate("RoundWidget", u"Tour pr\u00e9c\u00e9dent", None))
+#if QT_CONFIG(shortcut)
+        self.button_previous_round.setShortcut("")
+#endif // QT_CONFIG(shortcut)
         self.button_next_round.setText(QCoreApplication.translate("RoundWidget", u"Tour suivant", None))
 #if QT_CONFIG(shortcut)
         self.button_next_round.setShortcut("")
 #endif // QT_CONFIG(shortcut)
+        self.label_left.setText("")
         self.label.setText(QCoreApplication.translate("RoundWidget", u"TextLabel", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("RoundWidget", u"Tour n\u00b03", None))
         self.label_2.setText(QCoreApplication.translate("RoundWidget", u"Nombre de terrains :", None))

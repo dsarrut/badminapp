@@ -31,9 +31,12 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
         self.slot_on_player_name_change()
         self.match.match_status_changed.connect(self.slot_on_player_name_change)
         self.player.player_name_changed.connect(self.slot_on_player_name_change)
+        self.match.round.round_termination_changed.connect(self.slot_on_round_termination_changed)
 
     def mousePressEvent(self, event):
         if event.button() != Qt.LeftButton:
+            return
+        if self.match.round.terminated:
             return
         self.setStyleSheet(self.css_drag)
         self.p = self.grab()
@@ -49,6 +52,8 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
         self.drag.setHotSpot(pos)
 
     def mouseMoveEvent(self, event):
+        if self.match.round.terminated:
+            return
         self.drag.exec_()
         self.setCursor(Qt.OpenHandCursor)
         self.setStyleSheet(self.css_normal)
@@ -86,3 +91,9 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
         self.label.setText(str(self.player))
         self.player.player_name_changed.connect(self.slot_on_player_name_change)
         self.setStyleSheet(self.css_normal)
+
+    @Slot()
+    def slot_on_round_termination_changed(self):
+        f = self.match.round.terminated
+        self.setAcceptDrops(not f)
+

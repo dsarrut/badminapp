@@ -34,6 +34,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         rw.set_round(round)
         self.layout.addWidget(rw)
 
+    def set_tab_round(self, round_nb):
+        self.tab.setCurrentIndex(round_nb)
+
     @Slot()
     def slot_on_next_round(self):
         print('FIXME check possible')

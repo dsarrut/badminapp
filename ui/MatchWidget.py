@@ -48,6 +48,7 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
         self.spin_box_t2_s1.setMaximum(m)
         self.spin_box_t2_s2.setMaximum(m)
         self.spin_box_t2_s3.setMaximum(m)
+        match.round.round_termination_changed.connect(self.slot_on_round_termination_changed)
         self.match_changed()
         self.repaint()
 
@@ -180,6 +181,11 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
             for s in range(1,4):
                 self.get_spin_box(t,s).setValue(m.set(s).score(t))
 
+        # prevent change if terminated
+        if self.match.round.terminated:
+            self.lock()
+
+        # signal / slot
         self.slot_on_set_status_changed()
         self.slot_on_match_status_changed()
 
@@ -275,4 +281,14 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
         self.verticalLayout.addWidget(self.team1)
         self.team2 = TeamWidget.TeamWidget(self, self.match.team2)
         self.verticalLayout.addWidget(self.team2)
+
+    @Slot()
+    def slot_on_round_termination_changed(self):
+        f = True
+        if self.match.round.terminated:
+            f = False
+        for team in range(1,3):
+            for set in range(1,4):
+                s = self.get_spin_box(team,set)
+                s.setEnabled(f)
 

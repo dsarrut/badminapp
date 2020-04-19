@@ -13,10 +13,12 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.setupUi(self)
 
         self.fields = {}
+        self.parent = parent
         # signal button
         self.button_random.clicked.connect(self.slot_on_random)
         self.button_swiss.clicked.connect(self.slot_on_swiss_random)
-        self.button_next_round.clicked.connect(parent.slot_on_next_round)
+        self.button_next_round.clicked.connect(self.slot_on_next_round)
+        self.button_previous_round.clicked.connect(self.slot_on_previous_round)
         self.button_random_scores.clicked.connect(self.slot_on_random_scores)
         self.button_next_round.setEnabled(False)
 
@@ -60,6 +62,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
         # update status
         self.slot_on_match_status_changed()
+        self.slot_on_round_termination_changed()
 
         # update options
         self.spin_fields.setValue(self.round.fields_number)
@@ -70,16 +73,20 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.toolBox.setCurrentIndex(0)
 
         # debug mode
-        print('debug = ',self.round.debug_mode)
         self.button_random_scores.setEnabled(self.round.debug_mode)
         self.button_random_scores.setVisible(self.round.debug_mode)
         self.round.debug_mode_changed.connect(self.slot_on_debug_mode_changed)
+
+        # connection
+        self.round.round_termination_changed.connect(self.slot_on_round_termination_changed)
 
         # set player list
         self.setup_players_list()
 
     @Slot()
     def slot_on_random(self):
+        if self.round.terminated:
+            return
         self.round.match_generation_mode = 'random'
         self.generate_matches()
 
@@ -97,6 +104,8 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
     @Slot()
     def slot_on_random_scores(self):
+        if self.round.terminated:
+            return
         self.round.random_scores()
         for mw in self.match_widgets:
             mw.set_match(mw.match)
@@ -119,11 +128,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
             m.update_match_field()
 
         # update 'next round' button
-        if nb_win == n and n != 0:
-            self.button_next_round.setEnabled(True)
-        else:
-            self.button_next_round.setEnabled(False)
-
+        self.update_buttons_next_previous()
         
     @Slot()
     def slot_on_debug_mode_changed(self):
@@ -178,3 +183,52 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         f = f'Participants : {m}/{n}'
         self.label_players.setText(f)
         self.label_players_2.setText(f)
+
+    @Slot()
+    def slot_on_next_round(self):
+        self.round.setTerminated(True)
+        if self.round.is_last_round():
+            self.parent.slot_on_next_round()
+        else:
+            self.parent.set_tab_round(self.round.number+1)
+
+    @Slot()
+    def slot_on_previous_round(self):
+        print('prev')
+        idx = self.round.tournament.rounds.index(self.round)
+        print(idx)
+        if idx>0:
+            self.parent.set_tab_round(idx)
+
+    @Slot()
+    def slot_on_round_termination_changed(self):
+        f = True
+        if self.round.terminated:
+            f = False
+        self.button_random_scores.setEnabled(f)
+        self.button_random.setEnabled(f)
+        self.button_swiss.setEnabled(f)
+        t = self.round.tournament
+        index = t.rounds.index(self.round)
+        print(index)
+        self.update_buttons_next_previous()
+
+    def update_buttons_next_previous(self):
+        print("update button", self.round)
+        if self.round.number == 1:
+            self.button_previous_round.setEnabled(False)
+        else:
+            self.button_previous_round.setEnabled(True)
+
+        if self.round.terminated:
+            self.button_next_round.setText('Tour suivant')
+            self.button_next_round.setEnabled(True)
+            return
+
+        nb_win = self.round.nb_of_terminated_matches()
+        n = len(self.round.matches)
+        if nb_win == n and n != 0:
+            self.button_next_round.setText('Nouveau tour')
+            self.button_next_round.setEnabled(True)
+        else:
+            self.button_next_round.setEnabled(False)

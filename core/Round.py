@@ -8,6 +8,7 @@ from random import randint
 class Round(QObject):
 
     debug_mode_changed = Signal()
+    round_termination_changed = Signal()
 
     def __init__(self, tournament):
         QObject.__init__(self)
@@ -21,6 +22,7 @@ class Round(QObject):
         self._win_point_value = 21
         self._debug_mode = False
         self.match_generation_mode = 'random'
+        self.terminated = False
 
     def __str__(self):
         s = f'Round {self.number}'
@@ -107,9 +109,10 @@ class Round(QObject):
         for m in self.matches:
             m.random_scores()
 
-    def create_next_round(self):
-        r = self.tournament.new_round()
-        return r
+    #def create_next_round(self):
+    #    self.setTerminated(True)
+    #    r = self.tournament.new_round()
+    #    return r
 
     def nb_of_terminated_matches(self):
         nb_win = 0
@@ -165,3 +168,14 @@ class Round(QObject):
             if id == p.id:
                 return p
         return None
+
+    def setTerminated(self, v):
+        self.terminated = v
+        print('emit')
+        self.round_termination_changed.emit()
+
+    def is_last_round(self):
+        n = self.number
+        if n == len(self.tournament.rounds):
+            return True
+        return False
