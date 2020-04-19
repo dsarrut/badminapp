@@ -28,6 +28,11 @@
         <file>bad.jpg</file>
         <file>128x128/actions/roll-2.png</file>
         <file>swiss.png</file>
+        <file>128x128/actions/arrow-right-double-3.png</file>
+        <file>128x128/actions/go-next.png</file>
+        <file>128x128/actions/go-next-8.png</file>
+        <file>128x128/actions/go-next-9.png</file>
+        <file>128x128/actions/list-add-4.png</file>
     </qresource>
     <qresource prefix="/css">
         <file>60px-Nuvola_Swiss_flag.svg.png</file>

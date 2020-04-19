@@ -2,6 +2,8 @@ from .Match import Match
 from .Team import Team
 import random
 from PySide2.QtCore import Signal, QObject
+from operator import itemgetter, attrgetter
+from random import randint
 
 class Round(QObject):
 
@@ -18,6 +20,7 @@ class Round(QObject):
         self._max_point_value = 29
         self._win_point_value = 21
         self._debug_mode = False
+        self.match_generation_mode = 'random'
 
     def __str__(self):
         s = f'Round {self.number}'
@@ -43,11 +46,36 @@ class Round(QObject):
         self.players = players
 
     def create_matches(self):
-        self.create_matches_random()
+        m = self.match_generation_mode
+        self.selected_players = [p for p in self.players if p.selected]
+        if m == 'swiss':
+            self.create_matches_swiss()
+        else:
+            self.create_matches_random()
+
+    def create_matches_swiss(self):
+        pl = sorted(self.selected_players,
+                    key=attrgetter('stats.match_win_count',
+                                   'stats.set_diff',
+                                   'stats.points_diff'),
+                    reverse=True)
+        # put waiting players at the end
+        w = len(self.selected_players)%4
+        print(w, len(self.selected_players))
+        wplayers = []
+        for i in range(w):
+            wplayers.append(randint(0,len(self.selected_players)-1))
+        print(wplayers)
+        for p in wplayers:
+            pl.append(pl.pop(p))
+        self.create_matches_from_list(pl)
 
     def create_matches_random(self):
         # complete random
-        pl = random.sample(self.players, len(self.players))
+        pl = random.sample(self.selected_players, len(self.selected_players))
+        self.create_matches_from_list(pl)
+
+    def create_matches_from_list(self, pl):
         # create matches
         i=0
         n = len(pl)
@@ -55,10 +83,12 @@ class Round(QObject):
         self.matches = []
         self.waiting_players = []
         while i<=n-4:
+            # for swiss -> do not follow initial order
+            # for rnd -> never mind
             p1 = pl[i]
-            p2 = pl[i+1]
-            p3 = pl[i+2]
-            p4 = pl[i+3]
+            p2 = pl[i+3]
+            p3 = pl[i+1]
+            p4 = pl[i+2]
             t1 = Team(p1, p2)
             t2 = Team(p3, p4)
             m = Match(self, t1, t2, f)

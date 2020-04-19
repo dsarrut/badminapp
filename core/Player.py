@@ -28,6 +28,7 @@ class Player(QObject):
         Player._last_id = self.id
         self.matches = []
         self._stats = PlayerStats()
+        self.selected = True # FIXME
 
     def __str__(self):
         s = f'{self._first_name} {self._last_name}'
@@ -60,9 +61,7 @@ class Player(QObject):
     def add_match(self, match):
         if match == None:
             return
-        print('player add a match', self)
         self.matches.append(match)
-
 
     def update_stats(self):
         self._stats = PlayerStats()

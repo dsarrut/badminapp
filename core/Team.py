@@ -46,7 +46,7 @@ class Team:
         else:
             self._stats.match_win_count = 0
         # count nb of loose set
-        self._stats.set_loose_count = 0
+        self._stats.set_diff = 0
         # count nb points
         self._stats.points_diff = 0
         if team == 1:
@@ -59,8 +59,10 @@ class Team:
                 continue
             diff = match.set(i).score(team) - match.set(i).score(ot)
             self._stats.points_diff = self._stats.points_diff + diff
-            if team != match.set(i).status:
-                self._stats.set_loose_count = self._stats.set_loose_count + 1
+            if match.set(i).status == team:
+                self._stats.set_diff = self._stats.set_diff + 1
+            else:
+                self._stats.set_diff = self._stats.set_diff - 1
 
     def update_players_stats(self):
         self.player1.update_stats() # FIXME update only one match ?

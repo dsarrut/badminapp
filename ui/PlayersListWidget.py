@@ -92,6 +92,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
     def set_model(self):
         self.model = PlayersTableModel(self.players)
         self.table_widget.setModel(self.model)
+        self.table_widget.setAlternatingRowColors(True)
 
         # filter and sorting
         self.filter_proxy_model = PlayersTableSortFilterProxyModel()

@@ -16,7 +16,7 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
         #self.headers.append('Classement')
         self.headers.append('Matchs joués')
         self.headers.append('Matchs gagnés')
-        self.headers.append('Set perdus')
+        self.headers.append('Diff sets')
         self.headers.append('Diff points')
         self.headers.append('name')
         self.headers.append('id')
@@ -24,7 +24,7 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
         self.index_id = self.headers.index('id')
         self.index_played_matches = 2
         self.index_win_matches = 3
-        self.index_loose_sets = 4
+        self.index_set_diffs = 4
         self.index_points = 5
 
     def data(self, index, role):
@@ -47,13 +47,16 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
                 return p.stats.match_count
             if c == self.index_win_matches:
                 return p.stats.match_win_count
-            if c == self.index_loose_sets:
-                return p.stats.set_loose_count
+            if c == self.index_set_diffs:
+                n = p.stats.set_diff
+                if n>0:
+                    return f'+{n}'
+                return n
             if c == self.index_points:
                 n = p.stats.points_diff
                 if n>0:
                     return f'+{n}'
-                return p.stats.points_diff
+                return n
             return str(666)
 
 

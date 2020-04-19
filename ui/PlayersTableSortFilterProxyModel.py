@@ -26,9 +26,9 @@ class PlayersTableSortFilterProxyModel(QtCore.QSortFilterProxyModel):
             if pl.stats.match_win_count > pr.stats.match_win_count:
                 return False
             #print('equal m win', pl, pr, pl.stats)
-            if pl.stats.set_loose_count > pr.stats.set_loose_count:
+            if pl.stats.set_diff < pr.stats.set_diff:
                 return True
-            if pl.stats.set_loose_count < pr.stats.set_loose_count:
+            if pl.stats.set_diff > pr.stats.set_diff:
                 return False
             #print('equal set', pl, pr, pl.stats)
             if pl.stats.points_diff < pr.stats.points_diff:
