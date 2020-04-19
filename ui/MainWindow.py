@@ -39,7 +39,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @Slot()
     def slot_on_next_round(self):
-        print('FIXME check possible')
         # new round
         t = self.tournament
         r = t.new_round()
@@ -58,7 +57,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         l.addWidget(rw)
         idx = self.tab.indexOf(tw)
         self.tab.setCurrentIndex(idx)
-
         
     @Slot()
     def exit_app(self):

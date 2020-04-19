@@ -242,7 +242,7 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
             font.setPointSize(10)
             self.label_field.setFont(font)
             self.label_field.setText("Attente \nterrain")
-            self.label_field.setEnabled(False)
+            self.label_field.setEnabled(True)
 
     def update_context_menu(self):
         # this function is needed to create the lambda with both parameters
@@ -254,6 +254,11 @@ class MatchWidget(QtWidgets.QWidget, Ui_MatchWidget):
             self.label_field.removeAction(a)
 
         # create new context menu
+        a = QAction(self)
+        a.setText(f"Pas de terrain")
+        l = create_lambda(0)
+        a.triggered.connect(l)
+        self.label_field.addAction(a)
         for f in range(1,self.match.round.fields_number+1):
             if self.match.field == f:
                 continue

@@ -121,7 +121,7 @@ class Round(QObject):
 
     def update_fields(self):
         free_fields = []
-        print('FIXME bug here in update_fields')
+        #print('FIXME bug here in update_fields')
         for m in self.matches:
             if m.status == 1 or m.status == 2:
                 free_fields.append(m.field)
@@ -138,16 +138,16 @@ class Round(QObject):
         current_field = match.field
         other_match = None
         for m in self.matches:
-            if m.field == field:
+            if m.field == field and (m.status == 0 or m.status == -1):
                 other_match = m
                 continue
-        if other_match == None:
-            print('Bug in swap_field ?')
-            return
-        other_match.field = current_field
         match.field = field
         match.match_field_changed.emit()
+        if other_match == None:
+           return
+        other_match.field = current_field
         other_match.match_field_changed.emit()
+
 
     def set_max_point_value(self, s):
         self._max_point_value = s
