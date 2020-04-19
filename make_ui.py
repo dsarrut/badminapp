@@ -26,6 +26,7 @@ gen_ui(w, 'RoundWidget')
 gen_ui(w, 'WaitingPlayersWidget')
 gen_ui(w, 'PlayersListWidget')
 gen_ui(w, 'TeamWidget')
+gen_ui(w, 'PlayerWidget')
 
 print('Generate RC')
 if w:

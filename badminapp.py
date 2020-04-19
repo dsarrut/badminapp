@@ -18,6 +18,7 @@ t.set_players(players)
 
 round = t.new_round()
 round.fields_number = 5
+round.set_debug_mode(True)
 
 app = QApplication(sys.argv)
 m = MainWindow()

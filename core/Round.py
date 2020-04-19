@@ -89,9 +89,10 @@ class Round(QObject):
             p2 = pl[i+3]
             p3 = pl[i+1]
             p4 = pl[i+2]
-            t1 = Team(p1, p2)
-            t2 = Team(p3, p4)
-            m = Match(self, t1, t2, f)
+            #t1 = Team(p1, p2)
+            #t2 = Team(p3, p4)
+            #m = Match(self, t1, t2, f)
+            m = Match(self, p1, p2, p3, p4, f)
             self.matches.append(m)
             i = i+4
             if f == 0 or f >= self.fields_number:
@@ -152,3 +153,15 @@ class Round(QObject):
 
     def set_win_point_value(self, s):
         self._win_point_value = s
+
+    def get_match_by_id(self, id):
+        for m in self.matches:
+            if id == m.id:
+                return m
+        return None
+
+    def get_player_by_id(self, id):
+        for p in self.players:
+            if id == p.id:
+                return p
+        return None

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>250</width>
-    <height>23</height>
+    <height>21</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -40,6 +40,9 @@
    </property>
    <item>
     <widget class="QLabel" name="label_player1">
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>TextLabel</string>
      </property>
@@ -61,6 +64,9 @@
    </item>
    <item>
     <widget class="QLabel" name="label_player2">
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>TextLabel</string>
      </property>

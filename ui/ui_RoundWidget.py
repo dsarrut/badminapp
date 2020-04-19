@@ -41,7 +41,7 @@ class Ui_RoundWidget(object):
         icon = QIcon()
         icon.addFile(u":/icons/128x128/actions/roll-2.png", QSize(), QIcon.Normal, QIcon.On)
         self.button_random.setIcon(icon)
-        self.button_random.setIconSize(QSize(32, 32))
+        self.button_random.setIconSize(QSize(25, 25))
 
         self.horizontalLayout.addWidget(self.button_random)
 
@@ -50,7 +50,7 @@ class Ui_RoundWidget(object):
         icon1 = QIcon()
         icon1.addFile(u":/css/60px-Nuvola_Swiss_flag.svg.png", QSize(), QIcon.Normal, QIcon.On)
         self.button_swiss.setIcon(icon1)
-        self.button_swiss.setIconSize(QSize(32, 32))
+        self.button_swiss.setIconSize(QSize(25, 25))
 
         self.horizontalLayout.addWidget(self.button_swiss)
 
@@ -99,7 +99,7 @@ class Ui_RoundWidget(object):
         icon2 = QIcon()
         icon2.addFile(u":/icons/128x128/actions/go-next-9.png", QSize(), QIcon.Normal, QIcon.On)
         self.button_next_round.setIcon(icon2)
-        self.button_next_round.setIconSize(QSize(32, 32))
+        self.button_next_round.setIconSize(QSize(25, 25))
 
         self.horizontalLayout.addWidget(self.button_next_round)
 
@@ -294,7 +294,7 @@ class Ui_RoundWidget(object):
 
         self.retranslateUi(RoundWidget)
 
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(1)
         self.toolBox.layout().setSpacing(0)
 
 
@@ -309,19 +309,22 @@ class Ui_RoundWidget(object):
 #endif // QT_CONFIG(tooltip)
         self.button_random.setText("")
 #if QT_CONFIG(shortcut)
-        self.button_random.setShortcut(QCoreApplication.translate("RoundWidget", u"Ctrl+S", None))
+        self.button_random.setShortcut("")
 #endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.button_swiss.setToolTip(QCoreApplication.translate("RoundWidget", u"G\u00e9n\u00e9rer les matchs en \"ronde Suisse\"", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
-        self.button_swiss.setShortcut(QCoreApplication.translate("RoundWidget", u"Ctrl+S", None))
+        self.button_swiss.setShortcut("")
 #endif // QT_CONFIG(shortcut)
         self.button_random_scores.setText(QCoreApplication.translate("RoundWidget", u"scores rnd", None))
         self.label_left.setText("")
         self.label_players_2.setText(QCoreApplication.translate("RoundWidget", u"Participants 24/30", None))
         self.label_center.setText(QCoreApplication.translate("RoundWidget", u"14 matches - 5 en cours - 4 termin\u00e9s", None))
         self.button_next_round.setText(QCoreApplication.translate("RoundWidget", u"Tour suivant", None))
+#if QT_CONFIG(shortcut)
+        self.button_next_round.setShortcut("")
+#endif // QT_CONFIG(shortcut)
         self.label.setText(QCoreApplication.translate("RoundWidget", u"TextLabel", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("RoundWidget", u"Tour n\u00b03", None))
         self.label_2.setText(QCoreApplication.translate("RoundWidget", u"Nombre de terrains :", None))

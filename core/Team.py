@@ -4,7 +4,7 @@ from .PlayerStats import PlayerStats
 
 class Team:
 
-    def __init__(self, player1, player2):
+    def __init__(self, match, player1, player2):
         # later will be simple/double
         if not player1:
             player1 = Player()
@@ -12,18 +12,26 @@ class Team:
             player2 = Player()
         self.player1 = player1
         self.player2 = player2
+        self.match = match
         self._stats = PlayerStats()
 
     def __str__(self):
         s = f'{self.player1}/{self.player2}'
         return s
 
+    def player(self, i):
+        if i == 1:
+            return self.player1
+        if i == 2:
+            return self.player2
+        raise_except(f'Player must be 1 or 2 while it is {i}')
+
     def set_player(self, i, player):
         if i == 1:
             self.player1 = player
         if i == 2:
             self.player2 = player
-        raise_except(f'Team must be 1 or 2 while it is {i}')
+        raise_except(f'Player must be 1 or 2 while it is {i}')
 
     def add_match(self, match):
         self.player1.add_match(match)

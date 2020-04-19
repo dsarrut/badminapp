@@ -20,7 +20,7 @@ class Ui_TeamWidget(object):
     def setupUi(self, TeamWidget):
         if TeamWidget.objectName():
             TeamWidget.setObjectName(u"TeamWidget")
-        TeamWidget.resize(250, 23)
+        TeamWidget.resize(250, 21)
         TeamWidget.setMinimumSize(QSize(250, 0))
         TeamWidget.setMaximumSize(QSize(250, 16777215))
         self.horizontalLayout = QHBoxLayout(TeamWidget)
@@ -28,6 +28,7 @@ class Ui_TeamWidget(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.label_player1 = QLabel(TeamWidget)
         self.label_player1.setObjectName(u"label_player1")
+        self.label_player1.setAcceptDrops(False)
 
         self.horizontalLayout.addWidget(self.label_player1)
 
@@ -43,6 +44,7 @@ class Ui_TeamWidget(object):
 
         self.label_player2 = QLabel(TeamWidget)
         self.label_player2.setObjectName(u"label_player2")
+        self.label_player2.setAcceptDrops(False)
 
         self.horizontalLayout.addWidget(self.label_player2)
 

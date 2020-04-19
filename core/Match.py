@@ -1,6 +1,7 @@
 from .Set import Set
 from .helpers import *
 from PySide2.QtCore import Slot, Signal, QObject
+from .Team import Team
 
 class Match(QObject):
 
@@ -9,11 +10,11 @@ class Match(QObject):
 
     _last_id = 0
 
-    def __init__(self, round, team1, team2, field):
+    def __init__(self, round, p1, p2, p3, p4, field):
         QObject.__init__(self)
         self._round = round
-        self.team1 = team1
-        self.team2 = team2
+        self.team1 = Team(self, p1, p2)
+        self.team2 = Team(self, p3, p4)
         self.field = field
         self.set1 = Set(self, 1)
         self.set2 = Set(self, 2)
@@ -117,13 +118,15 @@ class Match(QObject):
         self.round.swap_field(self, field)
 
 
-    def get_player_team(self, player):
+    def get_player_team_id(self, player):
         if player == self.team1.player1 or player == self.team1.player2:
             return 1
-        return 2
+        if player == self.team2.player1 or player == self.team2.player2:
+            return 2
+        return None
 
     def get_player_match_stats(self, player):
-        t = self.get_player_team(player)
+        t = self.get_player_team_id(player)
         return self.team(t).stats
 
     def update_stats(self):
@@ -131,3 +134,23 @@ class Match(QObject):
         self.team2.update_team_stats(self, 2)
         self.team1.update_players_stats()
         self.team2.update_players_stats()
+
+    def swap_player(self, player1, match, player2):
+        t1 = self.team(self.get_player_team_id(player1))
+        t2 = match.team(match.get_player_team_id(player2))
+        if t1.player1 == player1:
+            t1.player1 = player2
+        else:
+            t1.player2 = player2
+        if t2.player1 == player2:
+            t2.player1 = player1
+        else:
+            t2.player2 = player1
+        player1.matches.remove(self)
+        player1.matches.append(match)
+        player2.matches.remove(match)
+        player2.matches.append(self)
+        self.match_status_changed.emit()
+        match.match_status_changed.emit()
+        self.update_stats()
+        match.update_stats()
