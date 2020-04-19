@@ -150,6 +150,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.table_widget.setModel(self.filter_proxy_model)
         self.table_widget.setSortingEnabled(True)
         self.edit_filter.textChanged.connect(self.filter_proxy_model.setFilterRegExp)
+        self.edit_filter.setClearButtonEnabled(True)
 
         # UI
         self.table_widget.setColumnHidden(3, True)

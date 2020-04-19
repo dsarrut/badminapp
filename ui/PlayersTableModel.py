@@ -2,6 +2,7 @@ import sys
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import Qt, Signal
 from core import Player
+from core.Player import random_word
 
 class PlayersTableModel(QtCore.QAbstractTableModel):
 
@@ -107,7 +108,9 @@ class PlayersTableModel(QtCore.QAbstractTableModel):
 
     def insertRow(self, row, parent=QtCore.QModelIndex()):
         self.beginInsertRows(parent, row, row)
-        p = Player('nom', 'prénom')
+        first = random_word()
+        sec = random_word()
+        p = Player(first, sec)
         self._players.insert(row, p)
         self.endInsertRows()
         self.players_changed.emit()

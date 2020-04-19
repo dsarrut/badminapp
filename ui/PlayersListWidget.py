@@ -24,7 +24,6 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         # set connections
         self.button_del.clicked.connect(self.slot_on_player_del)
         self.button_add.clicked.connect(self.slot_on_player_add)
-        self.edit_filter.setClearButtonEnabled(True)
 
     def set_players(self, players):
         self.players = players
@@ -103,6 +102,7 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         self.filter_proxy_model.setSortCaseSensitivity(Qt.CaseInsensitive)
         self.table_widget.setModel(self.filter_proxy_model)
         self.table_widget.setSortingEnabled(True)
+        self.edit_filter.setClearButtonEnabled(True)
 
         # connect
         self.model.players_changed.connect(self.slot_on_data_changed)
