@@ -15,6 +15,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QRadialGradient)
 from PySide2.QtWidgets import *
 
+import badminapp_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -24,10 +25,24 @@ class Ui_MainWindow(object):
         self.action_debug_mode = QAction(MainWindow)
         self.action_debug_mode.setObjectName(u"action_debug_mode")
         self.action_debug_mode.setCheckable(True)
-        self.actionyop = QAction(MainWindow)
-        self.actionyop.setObjectName(u"actionyop")
+        icon = QIcon()
+        icon.addFile(u":/icons/128x128/actions/system-run-6.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.action_debug_mode.setIcon(icon)
         self.action_exit = QAction(MainWindow)
         self.action_exit.setObjectName(u"action_exit")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/128x128/actions/application-exit-5.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.action_exit.setIcon(icon1)
+        self.action_save = QAction(MainWindow)
+        self.action_save.setObjectName(u"action_save")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/128x128/actions/document-export.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.action_save.setIcon(icon2)
+        self.action_load = QAction(MainWindow)
+        self.action_load.setObjectName(u"action_load")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/128x128/actions/document-open-5.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.action_load.setIcon(icon3)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -67,6 +82,9 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menubar)
 
         self.menubar.addAction(self.menucoucou.menuAction())
+        self.menucoucou.addAction(self.action_save)
+        self.menucoucou.addAction(self.action_load)
+        self.menucoucou.addSeparator()
         self.menucoucou.addAction(self.action_debug_mode)
         self.menucoucou.addAction(self.action_exit)
 
@@ -84,10 +102,17 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.action_debug_mode.setToolTip(QCoreApplication.translate("MainWindow", u"Debug mode", None))
 #endif // QT_CONFIG(tooltip)
-        self.actionyop.setText(QCoreApplication.translate("MainWindow", u"yop", None))
         self.action_exit.setText(QCoreApplication.translate("MainWindow", u"Quitter", None))
 #if QT_CONFIG(shortcut)
         self.action_exit.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", None))
+#endif // QT_CONFIG(shortcut)
+        self.action_save.setText(QCoreApplication.translate("MainWindow", u"Sauvergarder la liste des joueurs", None))
+#if QT_CONFIG(shortcut)
+        self.action_save.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
+        self.action_load.setText(QCoreApplication.translate("MainWindow", u"Charger une liste de joueurs", None))
+#if QT_CONFIG(shortcut)
+        self.action_load.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+O", None))
 #endif // QT_CONFIG(shortcut)
         self.tab.setTabText(self.tab.indexOf(self.tab_player), QCoreApplication.translate("MainWindow", u"Joueurs", None))
         self.tab.setTabText(self.tab.indexOf(self.tab_round1), QCoreApplication.translate("MainWindow", u"Tour n\u00b01", None))

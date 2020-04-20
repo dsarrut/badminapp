@@ -21,11 +21,11 @@ class Ui_PlayersListWidget(object):
     def setupUi(self, PlayersListWidget):
         if PlayersListWidget.objectName():
             PlayersListWidget.setObjectName(u"PlayersListWidget")
-        PlayersListWidget.resize(1274, 544)
+        PlayersListWidget.resize(1240, 546)
         self.horizontalLayout_2 = QHBoxLayout(PlayersListWidget)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label = QLabel(PlayersListWidget)
@@ -86,15 +86,20 @@ class Ui_PlayersListWidget(object):
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 3)
 
         self.table_widget = QTableView(PlayersListWidget)
         self.table_widget.setObjectName(u"table_widget")
+        self.table_widget.setMaximumSize(QSize(625, 16777215))
 
-        self.verticalLayout.addWidget(self.table_widget)
+        self.gridLayout.addWidget(self.table_widget, 1, 1, 1, 1)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_11, 1, 2, 1, 1)
 
 
-        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        self.horizontalLayout_2.addLayout(self.gridLayout)
 
         self.horizontalSpacer_8 = QSpacerItem(26, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -115,7 +120,11 @@ class Ui_PlayersListWidget(object):
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
-        self.horizontalSpacer_7 = QSpacerItem(25, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_9)
+
+        self.horizontalSpacer_7 = QSpacerItem(13, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_7)
 

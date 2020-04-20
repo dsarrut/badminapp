@@ -30,7 +30,9 @@ class Ui_RoundWidget(object):
         self.page.setObjectName(u"page")
         self.page.setGeometry(QRect(0, 0, 1262, 659))
         self.verticalLayout = QVBoxLayout(self.page)
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.groupBox = QGroupBox(self.page)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setMaximumSize(QSize(16777215, 60))
@@ -118,6 +120,7 @@ class Ui_RoundWidget(object):
         self.verticalLayout.addWidget(self.groupBox)
 
         self.main_layout = QGridLayout()
+        self.main_layout.setSpacing(0)
         self.main_layout.setObjectName(u"main_layout")
         self.label = QLabel(self.page)
         self.label.setObjectName(u"label")

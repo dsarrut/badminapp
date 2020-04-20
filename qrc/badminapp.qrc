@@ -34,6 +34,17 @@
         <file>128x128/actions/go-next-9.png</file>
         <file>128x128/actions/list-add-4.png</file>
         <file>128x128/actions/go-previous-9.png</file>
+        <file>128x128/actions/application-exit-2.png</file>
+        <file>128x128/actions/application-exit-3.png</file>
+        <file>128x128/actions/document-export.png</file>
+        <file>128x128/actions/document-open-4.png</file>
+        <file>128x128/actions/document-open-5.png</file>
+        <file>128x128/actions/document-save-as-6.png</file>
+        <file>128x128/actions/system-log-out-6.png</file>
+        <file>128x128/actions/system-run-3.png</file>
+        <file>128x128/actions/system-run-6.png</file>
+        <file>128x128/actions/system-shutdown-6.png</file>
+        <file>128x128/actions/user-new-3.png</file>
     </qresource>
     <qresource prefix="/css">
         <file>60px-Nuvola_Swiss_flag.svg.png</file>

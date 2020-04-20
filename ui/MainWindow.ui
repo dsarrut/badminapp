@@ -64,6 +64,9 @@
     <property name="title">
      <string>Options</string>
     </property>
+    <addaction name="action_save"/>
+    <addaction name="action_load"/>
+    <addaction name="separator"/>
     <addaction name="action_debug_mode"/>
     <addaction name="action_exit"/>
    </widget>
@@ -73,6 +76,10 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../qrc/badminapp.qrc">
+     <normaloff>:/icons/128x128/actions/system-run-6.png</normaloff>:/icons/128x128/actions/system-run-6.png</iconset>
+   </property>
    <property name="text">
     <string>Debug mode</string>
    </property>
@@ -80,12 +87,11 @@
     <string>Debug mode</string>
    </property>
   </action>
-  <action name="actionyop">
-   <property name="text">
-    <string>yop</string>
-   </property>
-  </action>
   <action name="action_exit">
+   <property name="icon">
+    <iconset resource="../qrc/badminapp.qrc">
+     <normaloff>:/icons/128x128/actions/application-exit-5.png</normaloff>:/icons/128x128/actions/application-exit-5.png</iconset>
+   </property>
    <property name="text">
     <string>Quitter</string>
    </property>
@@ -93,7 +99,33 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
+  <action name="action_save">
+   <property name="icon">
+    <iconset resource="../qrc/badminapp.qrc">
+     <normaloff>:/icons/128x128/actions/document-export.png</normaloff>:/icons/128x128/actions/document-export.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sauvergarder la liste des joueurs</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_load">
+   <property name="icon">
+    <iconset resource="../qrc/badminapp.qrc">
+     <normaloff>:/icons/128x128/actions/document-open-5.png</normaloff>:/icons/128x128/actions/document-open-5.png</iconset>
+   </property>
+   <property name="text">
+    <string>Charger une liste de joueurs</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../qrc/badminapp.qrc"/>
+ </resources>
  <connections/>
 </ui>

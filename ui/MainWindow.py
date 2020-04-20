@@ -16,6 +16,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tournament = Tournament()
         self.action_exit.triggered.connect(self.exit_app)
         self.action_debug_mode.triggered.connect(self.debug_mode)
+        self.action_save.triggered.connect(self.save_players)
+        self.action_load.triggered.connect(self.load_players)
 
         # install the player list widget
         pl = self.tournament.players
@@ -66,3 +68,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def debug_mode(self, checked):
         for r in self.tournament.rounds:
             r.set_debug_mode(checked)
+
+    def save_players(self):
+        print('save')
+
+    def load_players(self):
+        print('load')
+
