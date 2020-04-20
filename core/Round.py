@@ -1,5 +1,4 @@
 from .Match import Match
-from .Team import Team
 import random
 from PySide2.QtCore import Signal, QObject
 from operator import itemgetter, attrgetter

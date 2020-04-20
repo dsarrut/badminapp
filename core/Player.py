@@ -34,6 +34,21 @@ class Player(QObject):
         s = f'{self._first_name} {self._last_name}'
         return s
 
+    def to_dict(self):
+        d = {}
+        d['id'] = self.id
+        d['first_name'] = self.first_name
+        d['last_name'] = self.last_name
+        return d
+
+    def from_dict(self, d):
+        try:
+            self.id = d['id']
+            self._first_name = d['first_name']
+            self._last_name = d['last_name']
+        except:
+            self.id = -1
+
     @property
     def first_name(self):
         return self._first_name

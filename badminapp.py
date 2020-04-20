@@ -16,17 +16,12 @@ for i in range(n):
     players.append(Player())
 t.set_players(players)
 
-round = t.new_round()
-round.fields_number = 5
-round.set_debug_mode(True)
-
 app = QApplication(sys.argv)
 m = MainWindow()
 m.set_tournament(t)
-m.set_round(round)
-#app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
-#app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
-#app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyside2'))
+m.slot_on_next_round()
+m.tab.setCurrentIndex(0)
+t.rounds[0].set_debug_mode(True)
 
 m.show()
 app.exec_()

@@ -43,6 +43,11 @@ class Ui_MainWindow(object):
         icon3 = QIcon()
         icon3.addFile(u":/icons/128x128/actions/document-open-5.png", QSize(), QIcon.Normal, QIcon.Off)
         self.action_load.setIcon(icon3)
+        self.action_save_as = QAction(MainWindow)
+        self.action_save_as.setObjectName(u"action_save_as")
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/128x128/actions/document-save-as-6.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.action_save_as.setIcon(icon4)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -61,12 +66,6 @@ class Ui_MainWindow(object):
         self.layout_2.addWidget(self.widget, 0, 0, 1, 1)
 
         self.tab.addTab(self.tab_player, "")
-        self.tab_round1 = QWidget()
-        self.tab_round1.setObjectName(u"tab_round1")
-        self.tab_round1.setAutoFillBackground(True)
-        self.layout = QGridLayout(self.tab_round1)
-        self.layout.setObjectName(u"layout")
-        self.tab.addTab(self.tab_round1, "")
 
         self.gridLayout.addWidget(self.tab, 0, 0, 1, 1)
 
@@ -83,6 +82,7 @@ class Ui_MainWindow(object):
 
         self.menubar.addAction(self.menucoucou.menuAction())
         self.menucoucou.addAction(self.action_save)
+        self.menucoucou.addAction(self.action_save_as)
         self.menucoucou.addAction(self.action_load)
         self.menucoucou.addSeparator()
         self.menucoucou.addAction(self.action_debug_mode)
@@ -106,16 +106,16 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(shortcut)
         self.action_exit.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", None))
 #endif // QT_CONFIG(shortcut)
-        self.action_save.setText(QCoreApplication.translate("MainWindow", u"Sauvergarder la liste des joueurs", None))
+        self.action_save.setText(QCoreApplication.translate("MainWindow", u"Sauver", None))
 #if QT_CONFIG(shortcut)
         self.action_save.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
 #endif // QT_CONFIG(shortcut)
-        self.action_load.setText(QCoreApplication.translate("MainWindow", u"Charger une liste de joueurs", None))
+        self.action_load.setText(QCoreApplication.translate("MainWindow", u"Charger", None))
 #if QT_CONFIG(shortcut)
         self.action_load.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+O", None))
 #endif // QT_CONFIG(shortcut)
+        self.action_save_as.setText(QCoreApplication.translate("MainWindow", u"Sauver sous", None))
         self.tab.setTabText(self.tab.indexOf(self.tab_player), QCoreApplication.translate("MainWindow", u"Joueurs", None))
-        self.tab.setTabText(self.tab.indexOf(self.tab_round1), QCoreApplication.translate("MainWindow", u"Tour n\u00b01", None))
         self.menucoucou.setTitle(QCoreApplication.translate("MainWindow", u"Options", None))
     # retranslateUi
 

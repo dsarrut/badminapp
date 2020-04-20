@@ -37,15 +37,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_round1">
-       <property name="autoFillBackground">
-        <bool>true</bool>
-       </property>
-       <attribute name="title">
-        <string>Tour n°1</string>
-       </attribute>
-       <layout class="QGridLayout" name="layout"/>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -65,6 +56,7 @@
      <string>Options</string>
     </property>
     <addaction name="action_save"/>
+    <addaction name="action_save_as"/>
     <addaction name="action_load"/>
     <addaction name="separator"/>
     <addaction name="action_debug_mode"/>
@@ -105,7 +97,7 @@
      <normaloff>:/icons/128x128/actions/document-export.png</normaloff>:/icons/128x128/actions/document-export.png</iconset>
    </property>
    <property name="text">
-    <string>Sauvergarder la liste des joueurs</string>
+    <string>Sauver</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -117,10 +109,19 @@
      <normaloff>:/icons/128x128/actions/document-open-5.png</normaloff>:/icons/128x128/actions/document-open-5.png</iconset>
    </property>
    <property name="text">
-    <string>Charger une liste de joueurs</string>
+    <string>Charger</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_save_as">
+   <property name="icon">
+    <iconset resource="../qrc/badminapp.qrc">
+     <normaloff>:/icons/128x128/actions/document-save-as-6.png</normaloff>:/icons/128x128/actions/document-save-as-6.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sauver sous</string>
    </property>
   </action>
  </widget>
