@@ -2,7 +2,7 @@
 from PySide2 import QtWidgets
 from .ui_MainWindow import Ui_MainWindow
 from PySide2.QtCore import Slot, QCoreApplication
-from PySide2.QtWidgets import QApplication, QGridLayout, QWidget, QFileDialog
+from PySide2.QtWidgets import QApplication, QGridLayout, QWidget, QFileDialog, QMessageBox
 from ui import RoundWidget
 from ui import PlayersListWidget
 from core import Tournament
@@ -104,6 +104,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def load_players(self):
         self.open_filename, _ = \
                 QFileDialog.getOpenFileName(self, 'Charger des joueurs','','Joueurs (*.json)')
+
+        box = QMessageBox()
+        box.setStandardButtons(QMessageBox.Yes | QMessageBox.Discard)
+        yes = box.button(QMessageBox.Yes)
+        yes.setText('Oui, effacez tout.')
+        discard = box.button(QMessageBox.Discard)
+        discard.setText('Heu ... non, je me suis trompé !')
+        box.setText('Attention ! Tous les résultats actuels seront supprimés. \n Voulez-vous continuer ?')
+        box.setWindowTitle('Remplacer les joueurs')
+        ret = box.exec_()
+        if ret == QMessageBox.Discard:
+            return
+
         fs = open(self.open_filename, 'r')
         dic = json.load(fs)
         t = Tournament()
