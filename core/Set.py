@@ -133,3 +133,11 @@ class Set(QObject):
             self.score2 = w
             self.score1 = randint(0,w-2)
 
+    def is_set_has_started(self):
+        if self.score1 == 0 and self.score2 == 0:
+            return False
+        return True
+
+    def reset_score(self):
+        self.score1 = 0
+        self.score2 = 0

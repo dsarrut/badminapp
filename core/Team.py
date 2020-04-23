@@ -77,11 +77,5 @@ class Team:
         self.player2.update_stats()
 
     def remove_match(self, match):
-        if self.player1.id == 1:
-            print('remove', match)
-            print(len(self.player1.matches))
         self.player1.remove_match(match)
         self.player2.remove_match(match)
-        if self.player1.id == 1:
-            print('after', match)
-            print(len(self.player1.matches))

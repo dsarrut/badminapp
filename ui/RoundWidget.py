@@ -1,5 +1,6 @@
 from PySide2 import QtWidgets
 from PySide2.QtCore import Slot, QCoreApplication, QSortFilterProxyModel, Qt
+from PySide2.QtWidgets import QMessageBox
 from .ui_RoundWidget import Ui_RoundWidget
 from ui import MatchWidget
 from ui.WaitingPlayersWidget import WaitingPlayersWidget
@@ -21,6 +22,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.button_previous_round.clicked.connect(self.slot_on_previous_round)
         self.button_random_scores.clicked.connect(self.slot_on_random_scores)
         self.button_next_round.setEnabled(False)
+        self.button_erase_score.clicked.connect(self.slot_on_erase_scores)
 
     def set_round(self, round):
         self.round = round
@@ -79,6 +81,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
         # connection
         self.round.round_termination_changed.connect(self.slot_on_round_termination_changed)
+        self.round.round_started_changed.connect(self.slot_on_round_start_changed)
 
         # set player list
         self.setup_players_list()
@@ -96,7 +99,6 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.generate_matches()
 
     def generate_matches(self):
-        print('generate match, previous ', len(self.round.matches))
         for m in self.round.matches:
             self.round.remove_match_for_players(m)
         self.round.matches.clear()
@@ -105,8 +107,6 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.round.set_win_point_value(self.spin_win_point_value.value())
         self.round.create_matches()
         self.set_round(self.round)
-        #self.button_swiss.setEnabled(False)
-        #self.button_random.setEnabled(False)
 
     @Slot()
     def slot_on_random_scores(self):
@@ -223,8 +223,8 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.button_random.setEnabled(f)
         self.button_swiss.setEnabled(f)
         t = self.round.tournament
-        index = t.rounds.index(self.round)
         self.update_buttons_next_previous()
+        self.button_erase_score.setEnabled(f)
 
     def update_buttons_next_previous(self):
         if self.round.number == 1:
@@ -242,3 +242,28 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
             self.button_next_round.setEnabled(True)
         else:
             self.button_next_round.setEnabled(False)
+
+    def slot_on_round_start_changed(self):
+        v = not self.round.started
+        self.button_random.setEnabled(v)
+        self.button_swiss.setEnabled(v)
+
+    def slot_on_erase_scores(self):
+        if self.round.terminated:
+            return
+        if self.round.started == False:
+            return
+        box = QMessageBox()
+        box.setStandardButtons(QMessageBox.Yes | QMessageBox.Discard)
+        yes = box.button(QMessageBox.Yes)
+        yes.setText('Oui, effacez tout.')
+        discard = box.button(QMessageBox.Discard)
+        discard.setText('Heu ... non, je me suis trompé !')
+        box.setText('Attention ! Tous les résultats actuels seront supprimés. \n Voulez-vous continuer ?')
+        box.setWindowTitle('Générer les matchs')
+        ret = box.exec_()
+        if ret == QMessageBox.Discard:
+            return
+        self.round.reset_all_scores()
+        for w in self.match_widgets:
+            w.set_match(w.match)

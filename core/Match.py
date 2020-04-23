@@ -25,6 +25,7 @@ class Match(QObject):
         self.set2.set_status_changed.connect(self.on_set_status_changed)
         self.set3.set_status_changed.connect(self.on_set_status_changed)
         self._status = 0 # -1 invalid, 0 in progress, 1 or 2 for winner
+        self.started = False
         self.id = Match._last_id+1
         Match._last_id = self.id
 
@@ -134,6 +135,17 @@ class Match(QObject):
         self.team2.update_team_stats(self, 2)
         self.team1.update_players_stats()
         self.team2.update_players_stats()
+        old = self.started
+        if self.set1.is_set_has_started():
+            self.started = True
+        elif self.set2.is_set_has_started():
+            self.started = True
+        elif self.set3.is_set_has_started():
+            self.started = True
+        else:
+            self.started = False
+        if old != self.started:
+            self.round.update_started()
 
     def swap_player(self, player1, match, player2):
         t1 = self.team(self.get_player_team_id(player1))
@@ -154,3 +166,8 @@ class Match(QObject):
         match.match_status_changed.emit()
         self.update_stats()
         match.update_stats()
+
+    def reset_score(self):
+        self.set1.reset_score()
+        self.set2.reset_score()
+        self.set3.reset_score()

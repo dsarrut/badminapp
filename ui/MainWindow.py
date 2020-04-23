@@ -37,7 +37,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.players_list_widget.set_players(tournament.players)
 
     def set_round(self, round):
-        print('ici')
         #self.rounds.append(round)
         rw = RoundWidget.RoundWidget(parent=self)
         rw.set_round(round)

@@ -8,6 +8,7 @@ class Round(QObject):
 
     debug_mode_changed = Signal()
     round_termination_changed = Signal()
+    round_started_changed = Signal()
 
     def __init__(self, tournament):
         QObject.__init__(self)
@@ -22,6 +23,7 @@ class Round(QObject):
         self._debug_mode = False
         self.match_generation_mode = 'random'
         self.terminated = False
+        self.started = False
 
     def __str__(self):
         s = f'Round {self.number}'
@@ -38,6 +40,20 @@ class Round(QObject):
     @property
     def debug_mode(self):
         return self._debug_mode
+
+    def set_round_has_started(self, v):
+        if self.started == v:
+            return
+        self.started = v
+        print('emit round start',v)
+        self.round_started_changed.emit()
+
+    def update_started(self):
+        for m in self.matches:
+            if m.started:
+                self.set_round_has_started(True)
+                return
+        self.set_round_has_started(False)
 
     def set_debug_mode(self, value):
         self._debug_mode = value
@@ -179,3 +195,7 @@ class Round(QObject):
     def remove_match_for_players(self, match):
         match.team1.remove_match(match)
         match.team2.remove_match(match)
+
+    def reset_all_scores(self):
+        for m in self.matches:
+            m.reset_score()

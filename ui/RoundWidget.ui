@@ -80,6 +80,27 @@
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
+             <widget class="QPushButton" name="button_erase_score">
+              <property name="toolTip">
+               <string>Effacer les scores</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normalon>:/icons/128x128/actions/edit-delete-2.png</normalon>
+               </iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="button_random">
               <property name="toolTip">
                <string>Générer les matchs au hasard</string>
