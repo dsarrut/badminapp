@@ -4,18 +4,16 @@ from PySide2.QtCore import Slot, Qt, QMimeData, QPoint
 from PySide2.QtGui import QDrag, QPixmap, QPalette, QColor
 from .ui_PlayerWidget import Ui_PlayerWidget
 
-class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
+class WaitingPlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
 
-    def __init__(self, parent, team, player_nb):
+    def __init__(self, parent, player, round):
         '''
         Constructor
         '''
         super().__init__(parent)
         self.setupUi(self)
-        self.match = team.match
-        self.team = team
-        self.player = team.player(player_nb)
-        self.player_nb = player_nb
+        self.player = player
+        self.round = round
 
         # prepare drag & drop
         self.setAcceptDrops(True)
@@ -27,20 +25,16 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
 
         # player name
         self.slot_on_player_name_change()
-        self.match.match_status_changed.connect(self.slot_on_player_name_change)
         self.player.player_name_changed.connect(self.slot_on_player_name_change)
-        self.match.round.round_termination_changed.connect(self.slot_on_round_termination_changed)
 
     def mousePressEvent(self, event):
         if event.button() != Qt.LeftButton:
-            return
-        if self.match.round.terminated:
             return
         self.setStyleSheet(self.css_drag)
         self.p = self.grab()
         self.drag = QDrag(self)
         mimeData = QMimeData()
-        f = f'{self.player.id} ; {self.match.id}'
+        f = f'{self.player.id} ; waiting'
         mimeData.setText(f)
         self.drag.setMimeData(mimeData)
         self.drag.setPixmap(self.p)
@@ -50,9 +44,6 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
         self.drag.setHotSpot(pos)
 
     def mouseMoveEvent(self, event):
-        if self.match.round.terminated:
-            self.setCursor(Qt.ArrowCursor)
-            return
         self.drag.exec_()
         self.setCursor(Qt.OpenHandCursor)
         self.setStyleSheet(self.css_normal)
@@ -63,8 +54,9 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
 
     def dragEnterEvent(self, event):
         id = event.mimeData().text()
-        id = id.split(' ; ')[0]
-        if str(self.player.id) != id:
+        ids = id.split(' ; ')
+        id = ids[0]
+        if str(self.player.id) != id and ids[1] != 'waiting':
             self.setStyleSheet(self.css_drag)
             event.accept()
 
@@ -74,13 +66,12 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
     def dropEvent(self, event):
         m = event.mimeData().text()
         ids = m.split(' ; ')
-        r = self.match.round
-        p = r.get_player_by_id(int(ids[0]))
         if ids[1] == 'waiting':
-            self.match.swap_player_waiting(self.player, p)
-        else:
-            m = r.get_match_by_id(int(ids[1]))
-            self.match.swap_player(self.player, m, p)
+            return
+        r = self.round
+        m = r.get_match_by_id(int(ids[1]))
+        p = r.get_player_by_id(int(ids[0]))
+        m.swap_player_waiting(p, self.player)
         self.setStyleSheet(self.css_normal)
 
     @Slot()
@@ -89,7 +80,7 @@ class PlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):
             self.player.player_name_changed.disconnect(self.slot_on_player_name_change)
         except:
             pass
-        self.player = self.team.player(self.player_nb)
+        #self.player = self.team.player(self.player_nb)
         self.label.setText(str(self.player))
         self.player.player_name_changed.connect(self.slot_on_player_name_change)
         self.setStyleSheet(self.css_normal)

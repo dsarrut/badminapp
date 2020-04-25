@@ -9,6 +9,7 @@ class Round(QObject):
     debug_mode_changed = Signal()
     round_termination_changed = Signal()
     round_started_changed = Signal()
+    round_waiting_list_changed = Signal()
 
     def __init__(self, tournament):
         QObject.__init__(self)
@@ -45,7 +46,6 @@ class Round(QObject):
         if self.started == v:
             return
         self.started = v
-        print('emit round start',v)
         self.round_started_changed.emit()
 
     def update_started(self):
@@ -117,6 +117,7 @@ class Round(QObject):
         while i<n:
             self.waiting_players.append(pl[i])
             i = i+1
+        self.round_waiting_list_changed.emit()
 
     def random_scores(self):
         for m in self.matches:

@@ -167,6 +167,20 @@ class Match(QObject):
         self.update_stats()
         match.update_stats()
 
+    def swap_player_waiting(self, player1, playerw):
+        t1 = self.team(self.get_player_team_id(player1))
+        if t1.player1 == player1:
+            t1.player1 = playerw
+        else:
+            t1.player2 = playerw
+        player1.matches.remove(self)
+        playerw.matches.append(self)
+        self.round.waiting_players.remove(playerw)
+        self.round.waiting_players.append(player1)
+        self.round.round_waiting_list_changed.emit()
+        self.match_status_changed.emit()
+        self.update_stats()
+
     def reset_score(self):
         self.set1.reset_score()
         self.set2.reset_score()

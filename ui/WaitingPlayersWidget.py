@@ -2,6 +2,7 @@
 from PySide2 import QtWidgets
 from .ui_WaitingPlayersWidget import Ui_WaitingPlayersWidget
 from PySide2.QtWidgets import QLabel
+from .WaitingPlayerWidget import WaitingPlayerWidget
 
 class WaitingPlayersWidget(QtWidgets.QWidget, Ui_WaitingPlayersWidget):
 
@@ -12,9 +13,9 @@ class WaitingPlayersWidget(QtWidgets.QWidget, Ui_WaitingPlayersWidget):
         super().__init__(parent)
         self.setupUi(self)
 
-        self.remove_labels()
+        self.remove_widgets()
 
-    def remove_labels(self):
+    def remove_widgets(self):
         # remove current labels
         c = self.verticalLayout.takeAt(0)
         while c:
@@ -23,11 +24,15 @@ class WaitingPlayersWidget(QtWidgets.QWidget, Ui_WaitingPlayersWidget):
             c = self.verticalLayout.takeAt(0)
         self.labels = []
 
-    def set_waiting_players(self, waiting_list):
-        self.waiting_list = waiting_list
-        self.remove_labels()
+    def set_waiting_players(self, round):
+        self.round = round
+        self.waiting_list = round.waiting_players
+        self.remove_widgets()
         for p in self.waiting_list:
-            l = QLabel(self)
-            l.setText(str(p))
-            self.verticalLayout.addWidget(l)
-            self.labels.append(l)
+            wp = WaitingPlayerWidget(self, p, round)
+            self.verticalLayout.addWidget(wp)
+            self.labels.append(wp)
+        self.round.round_waiting_list_changed.connect(self.slot_on_list_changed)
+
+    def slot_on_list_changed(self):
+        self.set_waiting_players(self.round)

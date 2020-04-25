@@ -59,7 +59,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
                 r = r+1
         if len(self.round.waiting_players) > 0:
             wpw = WaitingPlayersWidget(self)
-            wpw.set_waiting_players(self.round.waiting_players)
+            wpw.set_waiting_players(self.round)
             self.main_layout.addWidget(wpw, r, c)
 
         # update status

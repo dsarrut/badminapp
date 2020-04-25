@@ -3,6 +3,7 @@ from PySide2 import QtWidgets
 from PySide2.QtCore import Slot, Qt, QItemSelectionModel
 from .ui_PlayersListWidget import Ui_PlayersListWidget
 from .PlayersTableModel import PlayersTableModel
+from PySide2.QtWidgets import QMessageBox
 from .PlayersTableSortFilterProxyModel import PlayersTableSortFilterProxyModel
 
 class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
@@ -59,6 +60,20 @@ class PlayersListWidget(QtWidgets.QWidget, Ui_PlayersListWidget):
         p = self.selected_player
         if not p:
             return
+
+        for m in p.matches:
+            r = m.round
+            if not r.terminated:
+                print('not')
+                box = QMessageBox()
+                box.setStandardButtons(QMessageBox.Yes)
+                yes = box.button(QMessageBox.Yes)
+                yes.setText("OK, j'ai compris")
+                box.setText('Ce joueur participe à un match. On ne peut pas le supprimer maintenant.')
+                box.setWindowTitle('Supression impossible')
+                box.exec_()
+                return
+
         self.table_widget.clearSelection()
         self.model.removeRow(self.selected_row, self.selected_player)
 
