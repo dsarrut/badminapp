@@ -117,6 +117,15 @@ class Ui_RoundWidget(object):
 
         self.horizontalLayout.addWidget(self.button_next_round)
 
+        self.button_end_tournament = QPushButton(self.groupBox)
+        self.button_end_tournament.setObjectName(u"button_end_tournament")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/cup-1614530_1280.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_end_tournament.setIcon(icon5)
+        self.button_end_tournament.setIconSize(QSize(25, 25))
+
+        self.horizontalLayout.addWidget(self.button_end_tournament)
+
 
         self.gridLayout_4.addLayout(self.horizontalLayout, 0, 0, 1, 1)
 
@@ -351,6 +360,7 @@ class Ui_RoundWidget(object):
 #if QT_CONFIG(shortcut)
         self.button_next_round.setShortcut("")
 #endif // QT_CONFIG(shortcut)
+        self.button_end_tournament.setText(QCoreApplication.translate("RoundWidget", u"Terminer", None))
         self.label_left.setText("")
         self.label.setText(QCoreApplication.translate("RoundWidget", u"TextLabel", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("RoundWidget", u"Tour n\u00b03", None))

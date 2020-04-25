@@ -5,6 +5,7 @@ from PySide2.QtCore import Slot, QCoreApplication
 from PySide2.QtWidgets import QApplication, QGridLayout, QWidget, QFileDialog, QMessageBox
 from ui import RoundWidget
 from ui import PlayersListWidget
+from ui import FinalWidget
 from core import Tournament
 from core import Player
 import json
@@ -65,6 +66,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         l.addWidget(rw)
         idx = self.tab.indexOf(tw)
         self.tab.setCurrentIndex(idx)
+        rw.button_end_tournament.clicked.connect(self.end_tournament)
         
     @Slot()
     def exit_app(self):
@@ -133,4 +135,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tab.setCurrentIndex(0)
 
 
-
+    def end_tournament(self):
+        fw = FinalWidget.FinalWidget(self, self.tournament)
+        tw = QWidget()
+        tw.setAutoFillBackground(True)
+        self.tab.addTab(tw, "")
+        s = "C'est terminé !"
+        idx = self.tab.indexOf(tw)
+        self.tab.setTabText(idx, s)
+        l = QGridLayout(tw)
+        l.addWidget(fw)
+        self.tab.setAutoFillBackground(True)
+        self.tab.setCurrentIndex(idx)

@@ -257,6 +257,24 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QPushButton" name="button_end_tournament">
+              <property name="text">
+               <string>Terminer</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normalon>:/icons/cup-1614530_1280.png</normalon>
+               </iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
           <item row="0" column="1">

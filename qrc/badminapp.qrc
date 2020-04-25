@@ -45,6 +45,9 @@
         <file>128x128/actions/system-run-6.png</file>
         <file>128x128/actions/system-shutdown-6.png</file>
         <file>128x128/actions/user-new-3.png</file>
+        <file>cup-1615074_1920.png</file>
+        <file>cup-960-512.png</file>
+        <file>cup-1614530_1280.png</file>
     </qresource>
     <qresource prefix="/css">
         <file>60px-Nuvola_Swiss_flag.svg.png</file>

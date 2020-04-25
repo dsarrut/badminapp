@@ -1,7 +1,7 @@
 from .Match import Match
 import random
 from PySide2.QtCore import Signal, QObject
-from operator import itemgetter, attrgetter
+from operator import attrgetter
 from random import randint
 
 class Round(QObject):
