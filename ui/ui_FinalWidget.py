@@ -87,7 +87,7 @@ class Ui_FinalWidget(object):
         icon = QIcon()
         icon.addFile(u":/icons/128x128/actions/application-exit-4.png", QSize(), QIcon.Normal, QIcon.On)
         self.button_remove.setIcon(icon)
-        self.button_remove.setIconSize(QSize(25, 25))
+        self.button_remove.setIconSize(QSize(16, 16))
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.gridLayout.addWidget(self.scrollArea, 0, 0, 1, 1)
@@ -119,5 +119,8 @@ class Ui_FinalWidget(object):
 "32 joueurs \n"
 "4 tours", None))
         self.button_remove.setText(QCoreApplication.translate("FinalWidget", u"Supprimer", None))
+#if QT_CONFIG(shortcut)
+        self.button_remove.setShortcut("")
+#endif // QT_CONFIG(shortcut)
     # retranslateUi
 

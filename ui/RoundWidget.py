@@ -258,8 +258,8 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         yes = box.button(QMessageBox.Yes)
         yes.setText('Oui, effacez tout.')
         discard = box.button(QMessageBox.Discard)
-        discard.setText('Heu ... non, je me suis trompé !')
-        box.setText('Attention ! Tous les résultats actuels seront supprimés. \n Voulez-vous continuer ?')
+        discard.setText('Heu non, je me suis trompé !')
+        box.setText('Attention ! Tous les résultats de ce tour seront supprimés. \n Voulez-vous continuer ?')
         box.setWindowTitle('Générer les matchs')
         ret = box.exec_()
         if ret == QMessageBox.Discard:
