@@ -136,7 +136,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def end_tournament(self):
-        fw = FinalWidget.FinalWidget(self, self.tournament)
         tw = QWidget()
         tw.setAutoFillBackground(True)
         self.tab.addTab(tw, "")
@@ -144,6 +143,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         idx = self.tab.indexOf(tw)
         self.tab.setTabText(idx, s)
         l = QGridLayout(tw)
+        fw = FinalWidget.FinalWidget(self, self.tournament, tw)
         l.addWidget(fw)
         self.tab.setAutoFillBackground(True)
         self.tab.setCurrentIndex(idx)
+
+    def remove_final(self, w):
+        idx = self.tab.indexOf(w)
+        self.tab.removeTab(idx)

@@ -81,6 +81,13 @@ class Ui_FinalWidget(object):
         self.label_tournament.setFrameShape(QFrame.Panel)
         self.label_tournament.setFrameShadow(QFrame.Raised)
         self.label_tournament.setAlignment(Qt.AlignCenter)
+        self.button_remove = QPushButton(self.scrollAreaWidgetContents)
+        self.button_remove.setObjectName(u"button_remove")
+        self.button_remove.setGeometry(QRect(780, 490, 91, 23))
+        icon = QIcon()
+        icon.addFile(u":/icons/128x128/actions/application-exit-4.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_remove.setIcon(icon)
+        self.button_remove.setIconSize(QSize(25, 25))
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.gridLayout.addWidget(self.scrollArea, 0, 0, 1, 1)
@@ -111,5 +118,6 @@ class Ui_FinalWidget(object):
         self.label_tournament.setText(QCoreApplication.translate("FinalWidget", u"Tournoi termin\u00e9 ! \n"
 "32 joueurs \n"
 "4 tours", None))
+        self.button_remove.setText(QCoreApplication.translate("FinalWidget", u"Supprimer", None))
     # retranslateUi
 
