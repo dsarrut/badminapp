@@ -1,5 +1,4 @@
 from random import randint
-import io
 from PySide2.QtCore import Signal, QObject
 from .PlayerStats import PlayerStats
 from .nouns import nouns
