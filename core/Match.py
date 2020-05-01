@@ -3,8 +3,8 @@ from .helpers import *
 from PySide2.QtCore import Slot, Signal, QObject
 from .Team import Team
 
-class Match(QObject):
 
+class Match(QObject):
     match_status_changed = Signal()
     match_field_changed = Signal()
 
@@ -24,9 +24,9 @@ class Match(QObject):
         self.set1.set_status_changed.connect(self.on_set_status_changed)
         self.set2.set_status_changed.connect(self.on_set_status_changed)
         self.set3.set_status_changed.connect(self.on_set_status_changed)
-        self._status = 0 # -1 invalid, 0 in progress, 1 or 2 for winner
+        self._status = 0  # -1 invalid, 0 in progress, 1 or 2 for winner
         self.started = False
-        self.id = Match._last_id+1
+        self.id = Match._last_id + 1
         Match._last_id = self.id
 
     def __str__(self):
@@ -88,7 +88,6 @@ class Match(QObject):
             # emit signal
             self.match_status_changed.emit()
 
-
     def compute_winner(self):
         ws1 = self.set1.compute_winner()
         if ws1 == 0:
@@ -103,7 +102,6 @@ class Match(QObject):
         ws3 = self.set3.compute_winner()
         return ws3
 
-
     def random_scores(self):
         self.set1.random_scores()
         self.set2.random_scores()
@@ -117,7 +115,6 @@ class Match(QObject):
 
     def swap_field(self, field):
         self.round.swap_field(self, field)
-
 
     def get_player_team_id(self, player):
         if player == self.team1.player1 or player == self.team1.player2:

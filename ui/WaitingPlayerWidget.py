@@ -1,7 +1,7 @@
 
 from PySide2 import QtWidgets
 from PySide2.QtCore import Slot, Qt, QMimeData, QPoint
-from PySide2.QtGui import QDrag, QPixmap, QPalette, QColor
+from PySide2.QtGui import QDrag
 from .ui_PlayerWidget import Ui_PlayerWidget
 
 class WaitingPlayerWidget(QtWidgets.QWidget, Ui_PlayerWidget):

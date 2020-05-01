@@ -1,5 +1,4 @@
-import sys
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore
 from PySide2.QtCore import Qt, Signal
 from core import Player
 from core.Player import random_word

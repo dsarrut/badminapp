@@ -1,7 +1,4 @@
-import sys
-from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import Qt, Signal
-from core import Player
+from PySide2 import QtCore
 
 class PlayersTableSortFilterProxyModel(QtCore.QSortFilterProxyModel):
 

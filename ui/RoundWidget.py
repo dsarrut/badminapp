@@ -3,8 +3,9 @@ from PySide2.QtCore import Slot, QCoreApplication, QSortFilterProxyModel, Qt
 from PySide2.QtWidgets import QMessageBox
 from .ui_RoundWidget import Ui_RoundWidget
 from ui import MatchWidget
-from ui.WaitingPlayersWidget import WaitingPlayersWidget
+from .WaitingPlayersWidget import WaitingPlayersWidget
 from .RoundPlayersTableModel import RoundPlayersTableModel
+
 
 class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
@@ -14,6 +15,8 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
         self.fields = {}
         self.parent = parent
+        self.match_widgets = []
+        self.model = None
 
         # signal button
         self.button_random.clicked.connect(self.slot_on_random)
@@ -27,7 +30,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
     def set_round(self, round):
         self.round = round
         n = round.number
-        s = QCoreApplication.translate("RoundWidget", u"Tour n\u00b0"+str(n), None)
+        s = QCoreApplication.translate("RoundWidget", u"Tour n\u00b0" + str(n), None)
         self.toolBox.setItemText(self.toolBox.indexOf(self.page), s)
         s = QCoreApplication.translate("RoundWidget", u"Joueurs et options du tour n\u00b0" + str(n), None)
         self.toolBox.setItemText(1, s)
@@ -56,7 +59,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
                 c = 1
             else:
                 c = 0
-                r = r+1
+                r = r + 1
         if len(self.round.waiting_players) > 0:
             wpw = WaitingPlayersWidget(self)
             wpw.set_waiting_players(self.round)
@@ -121,7 +124,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         # update text status
         nb_win = self.round.nb_of_terminated_matches()
         n = len(self.round.matches)
-        m = n-nb_win
+        m = n - nb_win
         if nb_win > 1:
             t = f'{n} matches - {nb_win} terminés - {m} en cours'
         else:
@@ -135,12 +138,11 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
         # update 'next round' button
         self.update_buttons_next_previous()
-        
+
     @Slot()
     def slot_on_debug_mode_changed(self):
         self.button_random_scores.setEnabled(self.round.debug_mode)
         self.button_random_scores.setVisible(self.round.debug_mode)
-
 
     def setup_players_list(self):
         if self.round.terminated:
@@ -174,10 +176,12 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
 
         # UI
         self.table_widget.setColumnHidden(3, True)
+
         class AlignDelegate(QtWidgets.QStyledItemDelegate):
             def initStyleOption(self, option, index):
                 super(AlignDelegate, self).initStyleOption(option, index)
                 option.displayAlignment = Qt.AlignCenter
+
         delegate = AlignDelegate(self.table_widget)
         self.table_widget.setItemDelegateForColumn(2, delegate)
         self.table_widget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
@@ -194,7 +198,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         m = 0
         for p in self.round.players:
             if p.selected:
-                m = m+1
+                m = m + 1
         f = f'Participants : {m}/{n}'
         self.label_players.setText(f)
         self.label_players_2.setText(f)
@@ -205,13 +209,13 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         if self.round.is_last_round():
             self.parent.slot_on_next_round()
         else:
-            self.parent.set_tab_round(self.round.number+1)
+            self.parent.set_tab_round(self.round.number + 1)
         self.setup_players_list()
 
     @Slot()
     def slot_on_previous_round(self):
         idx = self.round.tournament.rounds.index(self.round)
-        if idx>0:
+        if idx > 0:
             self.parent.set_tab_round(idx)
 
     @Slot()
@@ -222,7 +226,6 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
         self.button_random_scores.setEnabled(f)
         self.button_random.setEnabled(f)
         self.button_swiss.setEnabled(f)
-        t = self.round.tournament
         self.update_buttons_next_previous()
         self.button_erase_score.setEnabled(f)
 
@@ -251,7 +254,7 @@ class RoundWidget(QtWidgets.QWidget, Ui_RoundWidget):
     def slot_on_erase_scores(self):
         if self.round.terminated:
             return
-        if self.round.started == False:
+        if not self.round.started:
             return
         box = QMessageBox()
         box.setStandardButtons(QMessageBox.Yes | QMessageBox.Discard)

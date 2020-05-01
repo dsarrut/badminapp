@@ -1,8 +1,6 @@
-import sys
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore
 from PySide2.QtCore import Qt, Signal
 from PySide2.QtGui import QBrush
-from core import Player
 
 class RoundPlayersTableModel(QtCore.QAbstractTableModel):
 

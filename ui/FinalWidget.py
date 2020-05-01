@@ -1,13 +1,6 @@
 from PySide2 import QtWidgets
-from PySide2.QtCore import Slot, QCoreApplication, QSortFilterProxyModel, Qt
-from PySide2.QtWidgets import QMessageBox
 from .ui_FinalWidget import Ui_FinalWidget
 from operator import attrgetter
-from ui import MatchWidget
-from ui.WaitingPlayersWidget import WaitingPlayersWidget
-from .RoundPlayersTableModel import RoundPlayersTableModel
-
-import badminapp_rc
 
 class FinalWidget(QtWidgets.QWidget, Ui_FinalWidget):
 

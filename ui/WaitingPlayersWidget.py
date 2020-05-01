@@ -1,7 +1,6 @@
 
 from PySide2 import QtWidgets
 from .ui_WaitingPlayersWidget import Ui_WaitingPlayersWidget
-from PySide2.QtWidgets import QLabel
 from .WaitingPlayerWidget import WaitingPlayerWidget
 
 class WaitingPlayersWidget(QtWidgets.QWidget, Ui_WaitingPlayersWidget):

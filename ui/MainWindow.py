@@ -2,6 +2,7 @@
 from PySide2 import QtWidgets
 from .ui_MainWindow import Ui_MainWindow
 from PySide2.QtCore import Slot, QCoreApplication
+from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QApplication, QGridLayout, QWidget, QFileDialog, QMessageBox
 from ui import RoundWidget
 from ui import PlayersListWidget
@@ -15,6 +16,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+
+        self.setWindowIcon(QIcon(u":/icons/bad.jpg"))  # Set the window icon and add it
+        self.setWindowTitle("Badminapp - Tournoi de badminton de type 'ronde Suisse' - BCVT 2020")
 
         self.filename = None
         self.tournament = Tournament()

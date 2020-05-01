@@ -21,7 +21,7 @@ m = MainWindow()
 m.set_tournament(t)
 m.slot_on_next_round()
 m.tab.setCurrentIndex(0)
-t.rounds[0].set_debug_mode(True)
+t.rounds[0].set_debug_mode(False)
 
 m.show()
 app.exec_()
