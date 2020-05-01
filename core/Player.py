@@ -2,10 +2,11 @@ from random import randint
 import io
 from PySide2.QtCore import Signal, QObject
 from .PlayerStats import PlayerStats
+from .nouns import nouns
 
-word_file = "qrc/nouns.txt"
-WORDS = io.open("qrc/nouns.txt", mode="r", encoding="utf-8").read().splitlines()
-
+#word_file = "qrc/nouns.txt"
+#WORDS = io.open("qrc/nouns.txt", mode="r", encoding="utf-8").read().splitlines()
+WORDS = nouns.splitlines()
 
 def random_word():
     value = randint(0, len(WORDS))
